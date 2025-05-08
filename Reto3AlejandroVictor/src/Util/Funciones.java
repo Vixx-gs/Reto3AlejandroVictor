@@ -19,7 +19,7 @@ public class Funciones {
 	public static int dimeEntero(String texto, Scanner sc) {  
 		boolean bien = false;
 		do {
-			try {
+			try { 
 				System.out.println(texto);
 				String s = sc.nextLine();
 				return Integer.parseInt(s);
