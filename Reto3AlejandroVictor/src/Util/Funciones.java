@@ -16,7 +16,7 @@ public class Funciones {
 	// {"","Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio", "Agosto",
 	// "Septiembre","Octubre","Noviembre","Diciembre"};
 
-	public static int dimeEntero(String texto, Scanner sc) {
+	public static int dimeEntero(String texto, Scanner sc) {  
 		boolean bien = false;
 		do {
 			try {
