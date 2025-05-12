@@ -7,7 +7,7 @@ public class PedidoProducto {
 	private int unidades;
 	private double precio;
 	
-	public PedidoProducto() {
+	public PedidoProducto() {  
 		
 	}
 
