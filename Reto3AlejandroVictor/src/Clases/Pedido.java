@@ -1,14 +1,14 @@
 package Clases;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 public class Pedido {
 	private int idpedido;
 	private Cliente idcliente;
 	private double precioTotal;
 	private String direccionEnvio;
-	private LocalDate fecha;
-	public Pedido(int idpedido, Cliente idcliente, double precioTotal, String direccionEnvio, LocalDate fecha) {
+	private Date fecha;
+	public Pedido(int idpedido, Cliente idcliente, double precioTotal, String direccionEnvio, Date fecha) {
 		super();
 		this.idpedido = idpedido;
 		this.idcliente = idcliente;
@@ -43,10 +43,10 @@ public class Pedido {
 	public void setDireccionEnvio(String direccionEnvio) {
 		this.direccionEnvio = direccionEnvio;
 	}
-	public LocalDate getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
-	public void setFecha(LocalDate fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
 	@Override
