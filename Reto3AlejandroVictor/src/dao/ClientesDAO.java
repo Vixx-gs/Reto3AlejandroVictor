@@ -1,0 +1,40 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import Clases.Cliente;
+import Util.Conexion;
+
+public class ClientesDAO {
+	public static List<Cliente> lista() {
+		List<Cliente> lista = new ArrayList<Cliente>();  
+		try {
+			// Abro conexion
+			Connection con = Conexion.abreConexion();
+			// Creo Select
+
+			PreparedStatement pst = con
+					.prepareStatement("Select idcliente, nombre, direccion, codigo from cliente order by nombre asc");
+			// Metemos la consulta en un resultado de consultas
+			ResultSet rs = pst.executeQuery();
+
+			while (rs.next()) {
+				lista.add(new Cliente(rs.getInt("idcliente"), 
+						rs.getString("nombre"), rs.getString("direccion"), rs.getInt("codigo")));
+				
+			}
+			rs.close();
+		} catch (Exception e) {
+				e.printStackTrace();
+		}
+		finally {
+			Conexion.cierraConexion();
+		}
+		return lista;
+
+	}
+}
