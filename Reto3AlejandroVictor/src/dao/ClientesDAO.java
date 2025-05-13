@@ -66,34 +66,50 @@ public class ClientesDAO {
 		}
 	}
 	
-	public static void buscarCliente() {
-		Scanner sc = new Scanner(System.in);
+	public static Cliente buscarCliente(int codigoI) {
 		try {
-			//pedir el codigo del cliente
-			int codigoI = Funciones.dimeEntero("Introduce el codigo del cliente", sc);
 			//abro conexion
 			Connection con = Conexion.abreConexion();
 			//buscar al cliente
 			PreparedStatement pst = con.prepareStatement("Select * from clientes where codigo = ?");
 			pst.setInt(1, codigoI);
-			//recupero clave
-			ResultSet rs = pst.getGeneratedKeys();
+			//ejecuto query
+			ResultSet rs = pst.executeQuery();
 			
+			//encuentro al cliente y guardo sus datos 
 			if(rs.next()) {
-				//muestro los datos de ahora
-				System.out.println("Datos del cliente ahora mismo");
-				System.out.println("Nombre: " + rs.getString("nombre"));
-				System.out.println("Direccion: " + rs.getString("direccion"));
-				System.out.println("Codigo: " + rs.getInt("codigo"));
-				
-				//pedir los datos del cliente nuevo
-				System.out.println("Introduce los nuevos datos");
+				Cliente cliente = new Cliente(rs.getInt("idCliente"), rs.getString("nombre"), rs.getString("direccion"), rs.getInt("codigo"));
+				rs.close();
+				//devuelvo a ese cliente
+				return cliente;
 			}
-			
-			
-			
+			rs.close();
 		} catch (Exception e) {
-			// TODO: handle exception
+			return null;
+		}
+		return null;
+	}
+	
+	public static void actualizarCliente(Cliente cliente) {
+		try {
+			//abro conexion
+			Connection con = Conexion.abreConexion();
+			//actualizo el cliente
+			PreparedStatement pst = con.prepareStatement("Update cliente set nombre= ?, direccion= ?, where codigo = ?");
+			pst.setString(1, cliente.getNombre());
+			pst.setString(2, cliente.getDireccion());
+			pst.setInt(3, cliente.getCodigo());
+			
+			int eu = pst.executeUpdate();
+			if(eu>0) {
+				System.out.println("Cliente actualizado correctamente");
+			}
+			else {
+				System.out.println("No se a podido actualizar el cliente");
+			}
+			pst.close();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }
