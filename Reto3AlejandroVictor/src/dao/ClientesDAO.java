@@ -6,10 +6,12 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import Clases.Categoria;
 import Clases.Cliente;
 import Util.Conexion;
+import Util.Funciones;
 
 public class ClientesDAO {
 	public static List<Cliente> lista() {
@@ -61,6 +63,21 @@ public class ClientesDAO {
 		} 
 		finally {
 			Conexion.cierraConexion();
+		}
+	}
+	
+	public static void buscarCliente() {
+		Scanner sc = new Scanner(System.in);
+		try {
+			//pedir el codigo del cliente
+			Funciones.dimeEntero("Introduce el codigo del cliente", sc);
+			//abro conexion
+			Connection con = Conexion.abreConexion();
+			//buscar al cliente
+			PreparedStatement pst = con.prepareStatement("Select * from clientes where codigo = ?");
+			
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 	}
 }
