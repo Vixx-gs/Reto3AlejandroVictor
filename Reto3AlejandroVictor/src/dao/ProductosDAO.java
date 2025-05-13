@@ -39,4 +39,26 @@ public class ProductosDAO {
 		return lista;
 
 	}
+	
+	public static void insertaProducto(Producto prod) {
+		try {
+		//Abro conexion 
+		Connection con=Conexion.abreConexion();
+		
+		//Genero consulta
+		PreparedStatement pst= con.prepareStatement("");
+		pst.setString(1, prod.getNombre());
+		pst.execute();
+		//recupero clave
+		ResultSet rs = pst.getGeneratedKeys();
+		if(rs.next())
+			prod.setIdProducto(rs.getInt(1));
+		rs.close();
+	} catch (Exception e) {
+		e.printStackTrace();
+	} 
+	finally {
+		Conexion.cierraConexion();
+	}
+	}
 }
