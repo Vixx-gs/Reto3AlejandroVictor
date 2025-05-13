@@ -9,8 +9,6 @@ import java.util.List;
 
 import Clases.Categoria;
 import Util.Conexion;
-import clase.Curso;
-import util.conexion;
 
 public class CategoriaDAO {
 
@@ -54,7 +52,7 @@ public class CategoriaDAO {
 			//recupero clave
 			ResultSet rs = pst.getGeneratedKeys();
 			if(rs.next())
-				categoria.setIdCategoria(rs.getInt(1)); 
+				categoria.setIdCategoria(rs.getInt(1));
 			rs.close();
 		} catch (Exception e) {
 			e.printStackTrace();
