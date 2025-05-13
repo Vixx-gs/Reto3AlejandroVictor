@@ -3,12 +3,15 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import Clases.Categoria;
 import Clases.Producto;
 import Util.Conexion;
+import Util.Funciones;
 
 public class ProductosDAO {
 	public static List<Producto> lista() {
@@ -46,8 +49,16 @@ public class ProductosDAO {
 		Connection con=Conexion.abreConexion();
 		
 		//Genero consulta
-		PreparedStatement pst= con.prepareStatement("");
-		pst.setString(1, prod.getNombre());
+		PreparedStatement pst= con.prepareStatement("insert into Producto(producto) values"
+				+ "(?,?,?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
+		pst.setInt(1, prod.getIdCategoria().getIdCategoria());
+		pst.setString(2, prod.getNombre());
+		pst.setDouble(3,prod.getPrecio());
+		pst.setString(4, prod.getDescripcion());
+		pst.setString(5,prod.getColor());
+		pst.setString(6, prod.getTalla());
+		pst.setInt(7, prod.getStock());
+		
 		pst.execute();
 		//recupero clave
 		ResultSet rs = pst.getGeneratedKeys();
@@ -60,5 +71,12 @@ public class ProductosDAO {
 	finally {
 		Conexion.cierraConexion();
 	}
+	}
+	
+	
+	public static void pideProducto(Producto prod) {
+		Scanner sc= new Scanner(System.in);
+		
+		String consulta=Funciones.dimeString("", sc);
 	}
 }

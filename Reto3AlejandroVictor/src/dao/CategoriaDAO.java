@@ -40,13 +40,14 @@ public class CategoriaDAO {
 
 	}
 	
-	public static void insertaCat(Categoria categoria)
+	public static void inserta(Categoria categoria)
 	{
 		try {
 			//abro conexion
 			Connection con = Conexion.abreConexion();
 			//creo select
-			PreparedStatement pst = con.prepareStatement("insert into Categoria(categoria) values (?)",Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement pst = con.prepareStatement("insert into Categoria(categoria)"
+					+ " values (?,?)",Statement.RETURN_GENERATED_KEYS);
 			pst.setString(1, categoria.getNombre());
 			pst.execute();
 			//recupero clave
