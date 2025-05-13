@@ -40,7 +40,7 @@ public class ClientesDAO {
 
 	}
 	
-	public static void insertaCat(Cliente cliente)
+	public static void insertaClien(Cliente cliente)
 	{
 		try {
 			//abro conexion
@@ -51,7 +51,7 @@ public class ClientesDAO {
 			pst.setString(2, cliente.getDireccion());
 			pst.setInt(3, cliente.getCodigo());
 			pst.execute();
-			//recupero clave
+			//recupero clave 
 			ResultSet rs = pst.getGeneratedKeys();
 			if(rs.next())
 				cliente.setIdCliente(1);
