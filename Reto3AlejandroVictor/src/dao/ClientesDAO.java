@@ -3,9 +3,11 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import Clases.Categoria;
 import Clases.Cliente;
 import Util.Conexion;
 
@@ -38,5 +40,25 @@ public class ClientesDAO {
 
 	}
 	
-	
+	public static void insertaCat(Cliente cliente)
+	{
+		try {
+			//abro conexion
+			Connection con = Conexion.abreConexion();
+			//creo select
+			PreparedStatement pst = con.prepareStatement("insert into Categoria(categoria) values (?)",Statement.RETURN_GENERATED_KEYS);
+			pst.setString(1, cliente.getNombre());
+			pst.execute();
+			//recupero clave
+			ResultSet rs = pst.getGeneratedKeys();
+			if(rs.next())
+				cliente.set(rs.getInt(1));
+			rs.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		finally {
+			Conexion.cierraConexion();
+		}
+	}
 }
