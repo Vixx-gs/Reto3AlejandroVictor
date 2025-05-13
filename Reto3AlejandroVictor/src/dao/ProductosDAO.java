@@ -75,8 +75,21 @@ public class ProductosDAO {
 	
 	
 	public static void pideProducto(Producto prod) {
-		Scanner sc= new Scanner(System.in);
+
 		
-		String consulta=Funciones.dimeString("", sc);
+		try {
+			//Abro conexion
+			Connection con=Conexion.abreConexion();
+			//Preparo consulta
+			PreparedStatement pst=con.prepareStatement("Select * from producto "
+					+ "where nombre= ?");
+			
+			
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 	}
 }
