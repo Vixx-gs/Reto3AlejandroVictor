@@ -68,14 +68,27 @@ public class main {
 		}
 
 	}
-	public static void gestionCategorias(Categoria cat) {
+	public static void gestionCategorias(Categoria categoria) {
 		
 	}
-	public static void gestionClientes(Cliente cli) {
+	public static void gestionClientes(Cliente cliente) {
+		Scanner sc = new Scanner(System.in);
 		System.out.println("/nDatos actuales del cliente");
-		System.out.println("");
+		System.out.println("Nombre: " + cliente.getNombre());
+		System.out.println("Direccion: "+ cliente.getDireccion());
+		System.out.println("Codigo: "+ cliente.getCodigo());
+		
+		System.out.println("/nIntroduce los nuevos datos");
+		System.out.println("Nuevo nombre: ");
+		cliente.setNombre(sc.nextLine());
+		
+		System.out.println("Nueva direccion: ");
+		cliente.setDireccion(sc.nextLine());
+		
+		System.out.println("Nuevo codigo: ");
+		cliente.setCodigo(sc.nextLine());
 	}
-	public static void gestionProductos(Producto prod) {
+	public static void gestionProductos(Producto producto) {
 		Scanner sc = new Scanner(System.in);
 		
 		
