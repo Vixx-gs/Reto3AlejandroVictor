@@ -61,7 +61,7 @@ public class CategoriaDAO {
 			Conexion.cierraConexion();
 		}
 	}
-
+ 
 }
 
 
