@@ -40,7 +40,7 @@ public class CategoriaDAO {
 
 	}
 	
-	public static void inserta(Categoria categoria)
+	public static void insertaCat(Categoria categoria)
 	{
 		try {
 			//abro conexion
