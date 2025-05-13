@@ -40,19 +40,21 @@ public class ClientesDAO {
 
 	}
 	
-	public static void insertaCat(Cliente cliente)
+	public static void insertaClien(Cliente cliente)
 	{
 		try {
 			//abro conexion
 			Connection con = Conexion.abreConexion();
 			//creo select
-			PreparedStatement pst = con.prepareStatement("insert into Categoria(categoria) values (?)",Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement pst = con.prepareStatement("insert into Cliente(cliente) values (?,?,?)",Statement.RETURN_GENERATED_KEYS);
 			pst.setString(1, cliente.getNombre());
+			pst.setString(2, cliente.getDireccion());
+			pst.setInt(3, cliente.getCodigo());
 			pst.execute();
-			//recupero clave
+			//recupero clave 
 			ResultSet rs = pst.getGeneratedKeys();
 			if(rs.next())
-				cliente.set(rs.getInt(1));
+				cliente.setIdCliente(1);
 			rs.close();
 		} catch (Exception e) {
 			e.printStackTrace();
