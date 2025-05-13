@@ -76,9 +76,11 @@ public class ClientesDAO {
 			//ejecuto query
 			ResultSet rs = pst.executeQuery();
 			
+			//encuentro al cliente y guardo sus datos 
 			if(rs.next()) {
 				Cliente cliente = new Cliente(rs.getInt("idCliente"), rs.getString("nombre"), rs.getString("direccion"), rs.getInt("codigo"));
 				rs.close();
+				//devuelvo a ese cliente
 				return cliente;
 			}
 			rs.close();
@@ -86,5 +88,28 @@ public class ClientesDAO {
 			return null;
 		}
 		return null;
+	}
+	
+	public static void actualizarCliente(Cliente cliente) {
+		try {
+			//abro conexion
+			Connection con = Conexion.abreConexion();
+			//actualizo el cliente
+			PreparedStatement pst = con.prepareStatement("Update cliente set nombre= ?, direccion= ?, where codigo = ?");
+			pst.setString(1, cliente.getNombre());
+			pst.setString(2, cliente.getDireccion());
+			pst.setInt(3, cliente.getCodigo());
+			
+			int eu = pst.executeUpdate();
+			if(eu>0) {
+				System.out.println("Cliente actualizado correctamente");
+			}
+			else {
+				System.out.println("No se a podido actualizar el cliente");
+			}
+			pst.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
