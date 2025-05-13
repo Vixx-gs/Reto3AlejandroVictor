@@ -56,7 +56,7 @@ public class CategoriaDAO {
 			rs.close();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		} 
 		finally {
 			Conexion.cierraConexion();
 		}
