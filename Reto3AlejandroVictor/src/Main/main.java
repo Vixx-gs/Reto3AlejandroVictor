@@ -72,14 +72,15 @@ public class main {
 		
 	}
 	public static void gestionClientes(Cliente cli) {
-		
+		System.out.println("/nDatos actuales del cliente");
+		System.out.println("");
 	}
 	public static void gestionProductos(Producto prod) {
 		Scanner sc = new Scanner(System.in);
 		
 		
 		String sIdCat=Funciones.dimeString("Introduzca una categoria", sc);
-		String sNombre=Funciones.dimeString("INtroduzca un nombre de un producto", sc);
+		String sNombre=Funciones.dimeString("Introduzca un nombre de un producto", sc);
 		Double dPrecio=Funciones.dimeDouble("Introduzca el precio", sc);
 		String sColor=Funciones.dimeString("Introduzca el color", sc);
 		String sTalla=Funciones.dimeString("Introduzca la talla", sc);
