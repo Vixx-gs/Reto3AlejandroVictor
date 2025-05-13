@@ -66,34 +66,25 @@ public class ClientesDAO {
 		}
 	}
 	
-	public static void buscarCliente() {
-		Scanner sc = new Scanner(System.in);
+	public static Cliente buscarCliente(int codigoI) {
 		try {
-			//pedir el codigo del cliente
-			int codigoI = Funciones.dimeEntero("Introduce el codigo del cliente", sc);
 			//abro conexion
 			Connection con = Conexion.abreConexion();
 			//buscar al cliente
 			PreparedStatement pst = con.prepareStatement("Select * from clientes where codigo = ?");
 			pst.setInt(1, codigoI);
-			//recupero clave
-			ResultSet rs = pst.getGeneratedKeys();
+			//ejecuto query
+			ResultSet rs = pst.executeQuery();
 			
 			if(rs.next()) {
-				//muestro los datos de ahora
-				System.out.println("Datos del cliente ahora mismo");
-				System.out.println("Nombre: " + rs.getString("nombre"));
-				System.out.println("Direccion: " + rs.getString("direccion"));
-				System.out.println("Codigo: " + rs.getInt("codigo"));
-				
-				//pedir los datos del cliente nuevo
-				System.out.println("Introduce los nuevos datos");
+				Cliente cliente = new Cliente(rs.getInt("idCliente"), rs.getString("nombre"), rs.getString("direccion"), rs.getInt("codigo"));
+				rs.close();
+				return cliente;
 			}
-			
-			
-			
+			rs.close();
 		} catch (Exception e) {
-			// TODO: handle exception
+			return null;
 		}
+		return null;
 	}
 }
