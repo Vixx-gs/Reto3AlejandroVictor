@@ -8,6 +8,7 @@ import Clases.Cliente;
 import Clases.Producto;
 import Util.Funciones;
 import dao.CategoriaDAO;
+import dao.ProductosDAO;
 
 public class main {
 
@@ -107,6 +108,8 @@ public class main {
 		producto.setTalla(sTalla);
 		String sDescripcion=Funciones.dimeString("Introduzca una descripcion", sc);
 		producto.setDescripcion(sDescripcion);
+		int iStock=Funciones.dimeEntero("introduzca un stock", sc);
+		producto.setStock(iStock);
 		
 		
 		
@@ -133,7 +136,14 @@ public class main {
 				
 			}
 		} while (true);
-		prod= new Producto(idCat, sNombre, dPrecio, sColor, sTalla, sDescripcion);
+		
+		
+		Categoria cat= new Categoria(idCat);
+		prod= new Producto(cat,sNombre
+				,dPrecio, sColor, sTalla, sDescripcion, iStock);
+		
+		ProductosDAO.insertaProducto(prod);
+		
 		
 	}
 
