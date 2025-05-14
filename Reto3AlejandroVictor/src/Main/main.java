@@ -79,14 +79,15 @@ public class main {
 		System.out.println("Codigo: "+ cliente.getCodigo());
 		
 		System.out.println("/nIntroduce los nuevos datos");
-		System.out.println("Nuevo nombre: ");
-		cliente.setNombre(sc.nextLine());
+		String nombre = Funciones.dimeString("Nuevo Nombre", sc);
+		cliente.setNombre(nombre);
 		
-		System.out.println("Nueva direccion: ");
-		cliente.setDireccion(sc.nextLine());
+		String direccion = Funciones.dimeString("Nueva Direccion", sc);
+		cliente.setDireccion(direccion);
 		
-		System.out.println("Nuevo codigo: ");
-		cliente.setCodigo(sc.nextLine());
+		int codigo = Funciones.dimeEntero("Nuevo Codigo", sc);
+		cliente.setCodigo(codigo);
+		
 	}
 	public static void gestionProductos(Producto producto) {
 		Scanner sc = new Scanner(System.in);
