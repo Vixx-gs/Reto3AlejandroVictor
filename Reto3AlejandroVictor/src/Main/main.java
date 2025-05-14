@@ -7,6 +7,7 @@ import Clases.Categoria;
 import Clases.Cliente;
 import Clases.Producto;
 import Util.Funciones;
+import dao.CategoriaDAO;
 
 public class main {
 
@@ -91,7 +92,8 @@ public class main {
 	}
 	public static void gestionProductos(Producto producto) {
 		Scanner sc = new Scanner(System.in);
-		
+		int categoriaElegida=0;
+		Producto prod= new Producto();
 		
 		int idCat=Funciones.dimeEntero("Introduzca una categoria", sc);
 		producto.setIdCategoria(new Categoria(idCat));
@@ -107,20 +109,31 @@ public class main {
 		producto.setDescripcion(sDescripcion);
 		
 		
-		for (Producto sidCat : producto) {
-			System.out.println(idCat);
-			
-		}
+		
 		do {
 			try {
-				System.out.println("introduzca una categoria existente ");
+				System.out.println("A continuacion mostraremos las categorias "
+						+ "existentes ");
+				for (Categoria cat : CategoriaDAO.listaIdCat()) {
+					System.out.println(cat.getIdCategoria());
+				}
+				//Elije una categoria existente
+				categoriaElegida=Funciones.dimeEntero("Introduzca una categoria"
+						+ " existente", sc);
 				
-				if()
+				//Comprobamos si existe la categoria, si existe salimos del bucle
+				if(CategoriaDAO.listaIdCat().contains(categoriaElegida)) {
+					break;
+					
+				}
+				
+				
 				
 			} catch (Exception e) {
-				// TODO: handle exception
+				
 			}
 		} while (true);
+		prod= new Producto(idCat, sNombre, dPrecio, sColor, sTalla, sDescripcion);
 		
 	}
 
