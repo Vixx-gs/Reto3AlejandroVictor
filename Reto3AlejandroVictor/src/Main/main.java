@@ -105,6 +105,23 @@ public class main {
 		producto.setTalla(sTalla);
 		String sDescripcion=Funciones.dimeString("Introduzca una descripcion", sc);
 		producto.setDescripcion(sDescripcion);
+		
+		
+		for (Producto sidCat : producto) {
+			System.out.println(idCat);
+			
+		}
+		do {
+			try {
+				System.out.println("introduzca una categoria existente ");
+				
+				if()
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		} while (true);
+		
 	}
 
 }
