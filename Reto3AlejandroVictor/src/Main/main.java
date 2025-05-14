@@ -73,7 +73,10 @@ public class main {
 
 	}
 	public static void gestionCategorias(Categoria categoria) {
-		
+		Scanner sc = new Scanner(System.in);
+		String nombre = Funciones.dimeString("Nuevo Nombre", sc);
+		categoria.setNombre(nombre);
+		CategoriaDAO.inserta(categoria);
 	}
 	public static void gestionClientes(Cliente cliente) {
 		Scanner sc = new Scanner(System.in);
