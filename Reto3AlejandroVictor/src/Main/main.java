@@ -29,12 +29,14 @@ public class main {
 		} while (true);
 		
 		switch(opcion) {
-		case 1: System.out.println("Mantenimientos:\n"
-				+ "1.1. Gestión de categorías: pide por consola los datos de una nueva categoría e insertala en la BD.\n"
-				+ "1.2. Gestión de productos: pide por consola los datos de un producto, muestras las categorías con su id,\n"
-				+ "que el cliente elija una e inserta el producto en la BD.\n"
-				+ "1.3. Gestión de clientes: se mostrará el siguiente submenú\n"
-				);
+		case 1: 
+			int op1=0;
+			switch(op1) {
+			case 1:
+				Categoria catn = new Categoria();
+				gestionCategorias(catn);
+				
+			}
 		do {
 			try {
 				opcion=Funciones.dimeEntero("Elija un submenu", sc);

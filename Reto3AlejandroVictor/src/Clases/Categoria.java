@@ -11,6 +11,12 @@ public class Categoria {
 	}
 	
 
+	public Categoria(String nombre) {
+		super();
+		this.nombre = nombre;
+	}
+
+
 	public Categoria(int idCategoria) {
 		super();
 		this.idCategoria = idCategoria;
