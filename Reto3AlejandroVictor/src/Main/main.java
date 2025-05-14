@@ -86,7 +86,7 @@ public class main {
 		cliente.setDireccion(direccion);
 		
 		int codigo = Funciones.dimeEntero("Nuevo Codigo", sc);
-		cliente.setCodigo(codigo);
+		cliente.setCodigo(codigo); 
 		
 	}
 	public static void gestionProductos(Producto producto) {
