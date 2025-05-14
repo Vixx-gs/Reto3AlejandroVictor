@@ -93,35 +93,12 @@ public class main {
 		Scanner sc = new Scanner(System.in);
 		
 		
-		int idCat=Funciones.dimeEntero("Introduzca una categoria", sc);
-		producto.setIdCategoria(new Categoria(idCat));
+		String sIdCat=Funciones.dimeString("Introduzca una categoria", sc);
 		String sNombre=Funciones.dimeString("Introduzca un nombre de un producto", sc);
-		producto.setNombre(sNombre);
 		Double dPrecio=Funciones.dimeDouble("Introduzca el precio", sc);
-		producto.setPrecio(dPrecio);
 		String sColor=Funciones.dimeString("Introduzca el color", sc);
-		producto.setColor(sColor);
 		String sTalla=Funciones.dimeString("Introduzca la talla", sc);
-		producto.setTalla(sTalla);
 		String sDescripcion=Funciones.dimeString("Introduzca una descripcion", sc);
-		producto.setDescripcion(sDescripcion);
-		
-		
-		for (Producto sidCat : producto) {
-			System.out.println(idCat);
-			
-		}
-		do {
-			try {
-				System.out.println("introduzca una categoria existente ");
-				
-				if()
-				
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-		} while (true);
-		
 	}
 
 }
