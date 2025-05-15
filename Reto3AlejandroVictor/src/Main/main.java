@@ -146,6 +146,33 @@ public class main {
 		} while (true);
 		
 		switch(opcion) {
+		case 1: 
+			int op1=0;
+			switch(op1) {
+			case 1:
+				Categoria catn = new Categoria();
+				gestionCategorias(catn);
+			}
+		do {
+			try {
+				opcion=Funciones.dimeEntero("Elija un submenu", sc);
+			if (opcion<4&&opcion>0)
+				break;
+			} catch (Exception e) {
+				System.out.println("Formato invalido");
+			}
+			
+		} while (true);
+		
+		if(opcion==3) {
+			System.out.println("1.3.1. Alta de nuevos clientes: pide por consola los datos de un nuevo cliente e insértalo en la BD\n"
+					+ "1.3.2. Búsqueda por código: pide por consola el código del cliente y búscalo en la BD, mostrando todos\n"
+					+ "sus datos si está. Si no existe que lo diga. Pide por consola todos sus datos excepto el id y lo\n"
+					+ "actualizas en la base de datos.\n"
+					+ "");
+		}
+		
+			
 		case 1:
 			break;
 		case 2: 
