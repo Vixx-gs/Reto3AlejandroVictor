@@ -230,7 +230,7 @@ public class main {
 		prod = new Producto(cat, sNombre, dPrecio, sColor, sTalla, sDescripcion, iStock);
 
 		ProductosDAO.insertaProducto(prod);
-
+/**/
 	}
 
 }
