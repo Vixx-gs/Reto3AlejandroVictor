@@ -18,10 +18,16 @@ public class main {
 		Categoria categoria = new Categoria();
 		Producto producto = new Producto();
 		Cliente cliente = new Cliente();
+		
 		int opcion = 0;
+		
 		do {
 			try {
-				opcion = Funciones.dimeEntero("Introduzca una opcion del 1 al 4", sc);
+				opcion = Funciones.dimeEntero("Introduzca una de las siguientes opciones. \n"
+						+ "1.Mantenimientos \n"
+						+ "2. Catalogo productos \n"
+						+ "3.Pedidos \n"
+						+ "4. Informes", sc);
 				if (opcion < 5 && opcion > 0)
 					break;
 
@@ -30,7 +36,7 @@ public class main {
 			}
 		} while (true);
 
-		/* switch1 */ switch (opcion) {
+/*SubMenu1*/ switch (opcion) {
 		case 1:
 
 			System.out.println(
@@ -79,13 +85,75 @@ public class main {
 				break;
 			}
 
-/* 1ºCase2 */ case 2:
+/*SubMenu2*/ case 2:
+			System.out.println("2.1 Listar productos por categoria \n"
+					+ "2.2 Buscar productos.");
+			
+			do {
+				try {
+					opcion = Funciones.dimeEntero("Introduzca una opcion del 1 al 2", sc);
+					if (opcion < 3 && opcion > 0)
+						break;
+
+				} catch (Exception e) {
+					System.out.println("Formato invalido");
+				}
+			} while (true);
+
+			switch(opcion) {
+			case 1: /*listarProductos(producto);*/
+				break;
+			case 2: /*buscarPRoductos(producto);*/
+				break;
+			}
+			
 			break;
 
+/*SubMenu3*/	case 3: System.out.println("3.1 Crear pedido \n"
+				+ "3.2 Ver pedidos.");
+		do {
+			try {
+				opcion = Funciones.dimeEntero("Introduzca una opcion del 1 al 2", sc);
+				if (opcion < 3 && opcion > 0)
+					break;
+
+			} catch (Exception e) {
+				System.out.println("Formato invalido");
+			}
+		} while (true);
+		switch(opcion) {
+		case 1: /*crearPedido(pedido);*/
+			break;
+		case 2: /*verPedido(pedido);*/
+			break;
+		}
+		
+			break;
+
+/*SubMenu4*/case 4: System.out.println("Informes \n"
+				+ "4.1- Bajo stock \n "
+				+ "4.2-Pedidos por cliente \n"
+				+ "4.3-Productos mas vendidos ");
+		do {
+			try {
+				opcion = Funciones.dimeEntero("Introduzca una opcion del 1 al 3", sc);
+				if (opcion < 4 && opcion > 0)
+					break;
+
+			} catch (Exception e) {
+				System.out.println("Formato invalido");
+			}
+		} while (true);
+		
+		switch(opcion) {
+		case 1:
+			break;
+		case 2: 
+			break;
 		case 3:
 			break;
-
-		case 4:
+		}
+		
 			break;
 
 		}
