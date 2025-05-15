@@ -82,13 +82,22 @@ public class ProductosDAO {
 	}
 	
 	public List<Producto>buscarProductos(Connection con, String nombre, String talla, String color) throws SQLException{
+		List<Producto>productos = new ArrayList<>();
 		//abro conexion
 		con = Conexion.abreConexion();
 		
 		//Genero consulta
-		PreparedStatement pst = con.prepareStatement("Select * from productos where 1=1");
+		String pst = new String("Select * from productos where 1=1");
+		List<String>pa = new ArrayList<>();
 		
+		String nombrevacio = "";
+		String tallavacio = "";
+		String colorvacio = "";
 		
+		if(!nombre.isEmpty()) {
+			nombrevacio = "and nombre like ?";
+			pa.add("%" + "%");
+		}
 		
 		
 		
