@@ -35,7 +35,6 @@ public class main {
 			case 1:
 				Categoria catn = new Categoria();
 				gestionCategorias(catn);
-				
 			}
 		do {
 			try {
