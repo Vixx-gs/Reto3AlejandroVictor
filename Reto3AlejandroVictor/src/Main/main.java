@@ -146,7 +146,6 @@ public class main {
 		} while (true);
 		
 		switch(opcion) {
-<<<<<<< HEAD
 		case 1: 
 			int op1=0;
 			switch(op1) {
@@ -174,9 +173,7 @@ public class main {
 		}
 		
 			
-=======
 		case 1:
->>>>>>> branch 'main' of https://github.com/Vixx-gs/Reto3AlejandroVictor.git
 			break;
 		case 2: 
 			break;
