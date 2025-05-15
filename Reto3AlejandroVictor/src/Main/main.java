@@ -32,7 +32,7 @@ public class main {
 					break;
 
 			} catch (Exception e) {
-				System.out.println("Formato invalido");
+				System.out.println("Formato invalido");/**/
 			}
 		} while (true);
 
