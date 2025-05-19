@@ -8,6 +8,7 @@ import Clases.Cliente;
 import Clases.Producto;
 import Util.Funciones;
 import dao.CategoriaDAO;
+import dao.ClientesDAO;
 import dao.ProductosDAO;
 
 public class main {
@@ -65,7 +66,6 @@ public class main {
 				break;
 			case 3:
 				gestionClientes(cliente);
-
 				System.out.println(
 						"1.3.1. Alta de nuevos clientes: pide por consola los datos de un nuevo cliente e insértalo en la BD\n"
 								+ "1.3.2. Búsqueda por código: pide por consola el código del cliente y búscalo en la BD, mostrando todos\n"
@@ -81,7 +81,16 @@ public class main {
 						System.out.println("Formato invalido");
 					}
 				} while (true);
-
+				
+				switch(opcion) {
+				case 1:
+					ClientesDAO.insertaClien(cliente);
+					break;
+				case 2: int code = Funciones.dimeEntero("Introduce codigo", sc);
+					ClientesDAO.buscarCliente(code);
+					break;
+				}
+				
 				break;
 			}
 
