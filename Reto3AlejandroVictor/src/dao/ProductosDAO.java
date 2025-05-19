@@ -48,7 +48,7 @@ public class ProductosDAO {
 			Connection con = Conexion.abreConexion();
 
 			// Genero consulta
-			PreparedStatement pst = con.prepareStatement("insert into Producto(producto) values" + "(?,?,?,?,?,?,?)",
+			PreparedStatement pst = con.prepareStatement("insert into productos(idcategoria, nombre, precio, descripcion, color, talla, stock) values" + "(?,?,?,?,?,?,?)",
 					Statement.RETURN_GENERATED_KEYS);
 			pst.setInt(1, prod.getIdCategoria().getIdCategoria());
 			pst.setString(2, prod.getNombre());

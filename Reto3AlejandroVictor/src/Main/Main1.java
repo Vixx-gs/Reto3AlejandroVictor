@@ -225,7 +225,7 @@ public class Main1 {
 				categoriaElegida = Funciones.dimeEntero("Introduzca una categoria" + " existente", sc);
 
 				// Comprobamos si existe la categoria, si existe salimos del bucle
-				if (CategoriaDAO.listaIdCat().contains(categoriaElegida)) {
+				if (!(CategoriaDAO.listaIdCat().contains(categoriaElegida))) {
 					break;
 
 				}

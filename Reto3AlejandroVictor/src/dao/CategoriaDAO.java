@@ -46,9 +46,7 @@ public class CategoriaDAO {
 			Connection con = Conexion.abreConexion();
 			// Creo Select
 
-			PreparedStatement pst = con
-					.prepareStatement("Select idCategoria " +
-			"from categoria order by nombre asc");
+			PreparedStatement pst = con.prepareStatement("Select idCategoria from categorias order by nombre asc");
 			// Metemos la consulta en un resultado de consultas
 			ResultSet rs = pst.executeQuery();
 
