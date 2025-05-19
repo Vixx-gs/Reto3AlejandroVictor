@@ -82,7 +82,7 @@ public class ProductosDAO {
 		}
 	}
 	
-	public List<Producto>buscarProductos(String nombre, String talla, String color) throws SQLException{
+	public static List<Producto>buscarProductos(String nombre, String talla, String color) throws SQLException{
 		List<Producto>productos = new ArrayList<>();
 		
 		

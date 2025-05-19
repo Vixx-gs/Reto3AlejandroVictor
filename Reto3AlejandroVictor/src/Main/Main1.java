@@ -1,5 +1,6 @@
 package Main;
 
+import java.sql.SQLException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -13,7 +14,7 @@ import dao.ProductosDAO;
 
 public class Main1 {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 		Scanner sc = new Scanner(System.in);
 		Random r = new Random();
 		
@@ -62,7 +63,6 @@ public class Main1 {
 				gestionProductos();
 				break;
 			case 3:
-				gestionClientes();
 				System.out.println(
 						"1.3.1. Alta de nuevos clientes: pide por consola los datos de un nuevo cliente e insértalo en la BD\n"
 								+ "1.3.2. Búsqueda por código: pide por consola el código del cliente y búscalo en la BD, mostrando todos\n"
@@ -110,6 +110,10 @@ public class Main1 {
 			case 1: /*listarProductos(producto);*/
 				break;
 			case 2: 
+				String nombre = Funciones.dimeString("Introduce un nombre", sc);
+				String talla = Funciones.dimeString("Introduce una talla", sc);
+				String color = Funciones.dimeString("Introduce un color", sc);
+				ProductosDAO.buscarProductos(nombre, talla, color);
 				break;
 			}
 			
