@@ -86,7 +86,7 @@ public class ProductosDAO {
 		List<Producto>productos = new ArrayList<>();
 		
 		
-		String prodsql = "CALL buscar_productors(?,?,?)";
+		String prodsql = "CALL buscarProductos(?,?,?)";
 		try(Connection con = Conexion.abreConexion();
 			PreparedStatement pst = con.prepareStatement(prodsql)) {
 			 if (nombre == null)
