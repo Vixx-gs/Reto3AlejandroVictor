@@ -16,9 +16,6 @@ public class Main1 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		Random r = new Random();
-		Categoria categoria = new Categoria();
-		Producto producto = new Producto();
-		Cliente cliente = new Cliente();
 		
 		int opcion = 0;
 		
@@ -58,14 +55,14 @@ public class Main1 {
 			} while (true);
 			/* switch2 */ switch (opcion) {
 			case 1:
-				gestionCategorias(categoria);
+				gestionCategorias();
 				break;
 
 			case 2:
-				gestionProductos(producto);
+				gestionProductos();
 				break;
 			case 3:
-				gestionClientes(cliente);
+				gestionClientes();
 				System.out.println(
 						"1.3.1. Alta de nuevos clientes: pide por consola los datos de un nuevo cliente e insértalo en la BD\n"
 								+ "1.3.2. Búsqueda por código: pide por consola el código del cliente y búscalo en la BD, mostrando todos\n"
@@ -84,7 +81,7 @@ public class Main1 {
 				
 				switch(opcion) {
 				case 1:
-					ClientesDAO.insertaClien(cliente);
+					gestionClientes();
 					break;
 				case 2: int code = Funciones.dimeEntero("Introduce codigo", sc);
 					ClientesDAO.buscarCliente(code);
@@ -169,14 +166,16 @@ public class Main1 {
 
 	}
 
-	public static void gestionCategorias(Categoria categoria) {
+	public static void gestionCategorias() {
+		Categoria categoria = new Categoria();
 		Scanner sc = new Scanner(System.in);
 		String nombre = Funciones.dimeString("Nuevo Nombre", sc);
 		categoria.setNombre(nombre);
 		CategoriaDAO.inserta(categoria);
 	}
 
-	public static void gestionClientes(Cliente cliente) {
+	public static void gestionClientes() {
+		Cliente cliente = new Cliente();
 		Scanner sc = new Scanner(System.in);
 		System.out.println("/nDatos actuales del cliente");
 		System.out.println("Nombre: " + cliente.getNombre());
@@ -195,13 +194,12 @@ public class Main1 {
 
 	}
 
-	public static void gestionProductos(Producto producto) {
+	public static void gestionProductos() {
 		Scanner sc = new Scanner(System.in);
 		int categoriaElegida = 0;
-		Producto prod = new Producto();
+		Producto producto = new Producto();
+		
 
-		int idCat = Funciones.dimeEntero("Introduzca una categoria", sc);
-		producto.setIdCategoria(new Categoria(idCat));
 		String sNombre = Funciones.dimeString("Introduzca un nombre de un producto", sc);
 		producto.setNombre(sNombre);
 		Double dPrecio = Funciones.dimeDouble("Introduzca el precio", sc);
@@ -235,10 +233,9 @@ public class Main1 {
 			}
 		} while (true);
 
-		Categoria cat = new Categoria(idCat);
-		prod = new Producto(cat, sNombre, dPrecio, sColor, sTalla, sDescripcion, iStock);
-
-		ProductosDAO.insertaProducto(prod);
+		Categoria cat = new Categoria(categoriaElegida);
+		producto.setIdCategoria(cat);
+		ProductosDAO.insertaProducto(producto);
 
 	}
 
