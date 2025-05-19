@@ -111,7 +111,7 @@ public class ProductosDAO {
 		
 		
 		
-				return null;
+				return productos;
 		
 	}
 }
