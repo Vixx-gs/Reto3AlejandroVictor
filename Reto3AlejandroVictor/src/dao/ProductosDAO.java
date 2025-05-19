@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -88,7 +89,22 @@ public class ProductosDAO {
 		String prodsql = "CALL buscar_productors(?,?,?)";
 		try(Connection con = Conexion.abreConexion();
 			PreparedStatement pst = con.prepareStatement(prodsql)) {
+			 if (nombre == null)
+	             pst.setString(1, nombre);
+
+	            if (talla == null)
+	                pst.setString(2, talla);
+
+	            if (color == null)
+	                pst.setString(3, color);
 			
+	            ResultSet rs = pst.executeQuery();
+	            
+	            while(rs.next()) {
+	            	Categoria cat1 = new Categoria(rs.getInt("idCategoria"), rs.getString("nombre"));
+	            	productos.add(new Producto(rs.getInt("idProducto"), cat1, rs.getString("nombre"),
+	            			rs.getDouble("precio"), rs.getString("descripcion"), rs.getString("color"), rs.getString("talla"), rs.getInt("stock")));
+	            }
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
