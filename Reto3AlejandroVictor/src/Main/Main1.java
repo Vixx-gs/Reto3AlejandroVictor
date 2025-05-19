@@ -11,7 +11,7 @@ import dao.CategoriaDAO;
 import dao.ClientesDAO;
 import dao.ProductosDAO;
 
-public class main {
+public class Main1 {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -112,7 +112,7 @@ public class main {
 			switch(opcion) {
 			case 1: /*listarProductos(producto);*/
 				break;
-			case 2: /*buscarPRoductos(producto);*/
+			case 2: 
 				break;
 			}
 			
