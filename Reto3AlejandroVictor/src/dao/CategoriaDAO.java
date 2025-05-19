@@ -81,7 +81,7 @@ public class CategoriaDAO {
 			//abro conexion
 			Connection con = Conexion.abreConexion();
 			//creo select
-			PreparedStatement pst = con.prepareStatement("insert into Categoria(categoria)"
+			PreparedStatement pst = con.prepareStatement("insert into Categorias(categorias)"
 					+ " values (?,?)",Statement.RETURN_GENERATED_KEYS);
 			pst.setString(1, categoria.getNombre());
 			pst.execute();
