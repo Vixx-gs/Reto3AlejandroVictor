@@ -90,12 +90,18 @@ public class ProductosDAO {
 		try(Connection con = Conexion.abreConexion();
 			PreparedStatement pst = con.prepareStatement(prodsql)) {
 			 if (nombre == null)
+				 pst.setNull(1, Types.VARCHAR);
+			 else
 	             pst.setString(1, nombre);
 
 	            if (talla == null)
+	            	pst.setNull(2, Types.VARCHAR);
+				 else
 	                pst.setString(2, talla);
 
 	            if (color == null)
+	            	pst.setNull(3, Types.VARCHAR);
+				 else
 	                pst.setString(3, color);
 			
 	            ResultSet rs = pst.executeQuery();
