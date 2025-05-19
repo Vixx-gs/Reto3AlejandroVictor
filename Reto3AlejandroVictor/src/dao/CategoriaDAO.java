@@ -66,6 +66,15 @@ public class CategoriaDAO {
 		return lista;
 
 	}
+	public static void listarProductosPorCategoria() {
+		List<Categoria> lista = new ArrayList<Categoria>();  
+		 try {
+			Connection con=Conexion.abreConexion();
+			PreparedStatement pst= con.prepareStatement("Select * from ");
+		} catch (Exception e) {
+			
+		}
+	}
 	public static void inserta(Categoria categoria)
 	{
 		try {
