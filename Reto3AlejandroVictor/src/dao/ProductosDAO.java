@@ -128,9 +128,10 @@ public class ProductosDAO {
 				listaProductos.add(prod);
 			}
 		} catch (Exception e) {
+			
 			// TODO: handle exception
 		}
-		return listaProductos;
+		return listaProductos; 
 		
 	}
 	
