@@ -1,6 +1,8 @@
 package main;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -108,13 +110,18 @@ public class Main1 {
 			} while (true);
 
 			switch(opcion) {
-			case 1: /*listarProductos(producto);*/
+			case 1: listarProductos(producto);
 				break;
 			case 2: 
 				String nombre = Funciones.dimeString("Introduce un nombre", sc);
 				String talla = Funciones.dimeString("Introduce una talla", sc);
 				String color = Funciones.dimeString("Introduce un color", sc);
-				ProductosDAO.buscarProductos(nombre, talla, color);
+				List<Producto>productos = ProductosDAO.buscarProductos(nombre, talla, color);
+				for(Producto p : productos) {
+					System.out.println("nombre" + p.getNombre());
+					System.out.println("talla" + p.getTalla());
+					System.out.println("color" + p.getColor());
+				}
 				break;
 			}
 			
