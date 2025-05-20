@@ -119,9 +119,13 @@ public class Main1 {
 				String color = Funciones.dimeString("Introduce un color", sc);
 				List<Producto>productos = ProductosDAO.buscarProductos(nombre, talla, color);
 				for(Producto p : productos) {
+					System.out.println("idCategoria" + p.getIdCategoria());
 					System.out.println("nombre" + p.getNombre());
-					System.out.println("talla" + p.getTalla());
+					System.out.println("precio" + p.getPrecio());
+					System.out.println("descripcion" + p.getDescripcion());
 					System.out.println("color" + p.getColor());
+					System.out.println("talla" + p.getTalla());
+					System.out.println("stock" + p.getStock());
 				}
 				break;
 			}
