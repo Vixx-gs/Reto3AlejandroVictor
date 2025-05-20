@@ -114,9 +114,12 @@ public class Main1 {
 			case 1: ProductosDAO.listarProductos(producto);
 				break;
 			case 2: 
-				String nombre = Funciones.dimeString("Introduce un nombre", sc);
-				String talla = Funciones.dimeString("Introduce una talla", sc);
-				String color = Funciones.dimeString("Introduce un color", sc);
+				System.out.println("Introduce nombre");
+				String nombre = sc.nextLine();
+				System.out.println("Introduce talla");
+				String talla = sc.nextLine();
+				System.out.println("Introduce color");
+				String color = sc.nextLine();
 				List<Producto>productos = ProductosDAO.buscarProductos(nombre, talla, color);
 				for(Producto p : productos) {
 					System.out.println("idCategoria" + p.getIdCategoria());
