@@ -1,6 +1,5 @@
 package dao;
 
-import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -81,29 +80,54 @@ public class ProductosDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+	}
+	public static List <Producto> listarProductos(Producto prod){
+		List<Producto>productos = new ArrayList<>();
+		try {
+			// Abro conexion
+			Connection con = Conexion.abreConexion();
+			// Preparo consulta
+			PreparedStatement pst = con.prepareStatement("Select categorias.idcategoria,categorias.nombre"
+					+ " from categorias");
+			pst.setInt(1, prod.getIdCategoria().getIdCategoria());
+			pst.setString(2, prod.getNombre());
+			System.out.println("Seleccione una categoria existente");
+			
+			PreparedStatement pst1=con.prepareStatement("select productos.nombre, productos.precio, productos.descripcion,"
+					+ "productos.color, productos.talla, productos.stock"
+					+ " from productos inner join categorias"
+					+ " on idcategoria=idcategoria "
+					+ "where idcategoria=?");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public static List<Producto>buscarProductos(String nombre, String talla, String color) throws SQLException{
 		List<Producto>productos = new ArrayList<>();
 		
+		
+		String prodsql = "CALL buscarProductos(?,?,?)";
 		try(Connection con = Conexion.abreConexion();
-			CallableStatement cs = con.prepareCall("CALL buscarProductos(?,?,?)")){
+			PreparedStatement pst = con.prepareStatement(prodsql)) {
 			 if (nombre == null)
-				 cs.setNull(1, Types.VARCHAR);
+				 pst.setNull(1, Types.VARCHAR);
 			 else
-	             cs.setString(1, nombre);
+	             pst.setString(1, nombre);
 
 	            if (talla == null)
-	            	cs.setNull(2, Types.VARCHAR);
+	            	pst.setNull(2, Types.VARCHAR);
 				 else
-	                cs.setString(2, talla);
+	                pst.setString(2, talla);
 
 	            if (color == null)
-	            	cs.setNull(3, Types.VARCHAR);
+	            	pst.setNull(3, Types.VARCHAR);
 				 else
-	                cs.setString(3, color);
+	                pst.setString(3, color);
 			
-	            ResultSet rs = cs.executeQuery();
+	            ResultSet rs = pst.executeQuery();
 	            
 	            while(rs.next()) {
 	            	Categoria cat1 = new Categoria(rs.getInt("idCategoria"), rs.getString("nombre"));
