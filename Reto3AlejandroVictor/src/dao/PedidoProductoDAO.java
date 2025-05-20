@@ -6,12 +6,12 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import Clases.Categoria;
-import Clases.Cliente;
-import Clases.Pedido;
-import Clases.PedidoProducto;
-import Clases.Producto;
 import Util.Conexion;
+import clases.Categoria;
+import clases.Cliente;
+import clases.Pedido;
+import clases.PedidoProducto;
+import clases.Producto;
 
 public class PedidoProductoDAO {
 	public static List<PedidoProducto> lista(){

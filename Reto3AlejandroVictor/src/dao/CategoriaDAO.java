@@ -7,8 +7,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import Clases.Categoria;
 import Util.Conexion;
+import clases.Categoria;
 
 public class CategoriaDAO {
 

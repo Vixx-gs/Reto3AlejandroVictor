@@ -10,10 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import Clases.Categoria;
-import Clases.Producto;
 import Util.Conexion;
 import Util.Funciones;
+import clases.Categoria;
+import clases.Producto;
 
 public class ProductosDAO {
 	public static List<Producto> lista() {

@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import Clases.Categoria;
-import Clases.Cliente;
 import Util.Conexion;
 import Util.Funciones;
+import clases.Categoria;
+import clases.Cliente;
 
 public class ClientesDAO {
 	public static List<Cliente> lista() {

@@ -1,13 +1,13 @@
-package Main;
+package main;
 
 import java.sql.SQLException;
 import java.util.Random;
 import java.util.Scanner;
 
-import Clases.Categoria;
-import Clases.Cliente;
-import Clases.Producto;
 import Util.Funciones;
+import clases.Categoria;
+import clases.Cliente;
+import clases.Producto;
 import dao.CategoriaDAO;
 import dao.ClientesDAO;
 import dao.ProductosDAO;
@@ -61,7 +61,7 @@ public class Main1 {
 
 			case 2:
 				gestionProductos();
-				break;
+				break; 
 			case 3:
 				System.out.println(
 						"1.3.1. Alta de nuevos clientes: pide por consola los datos de un nuevo cliente e insértalo en la BD\n"
