@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -85,26 +86,24 @@ public class ProductosDAO {
 	public static List<Producto>buscarProductos(String nombre, String talla, String color) throws SQLException{
 		List<Producto>productos = new ArrayList<>();
 		
-		
-		String prodsql = "CALL productos(?,?,?)";
 		try(Connection con = Conexion.abreConexion();
-			PreparedStatement pst = con.prepareStatement(prodsql)) {
+			CallableStatement cs = con.prepareCall("CALL buscarProductos(?,?,?)")){
 			 if (nombre == null)
-				 pst.setNull(1, Types.VARCHAR);
+				 cs.setNull(1, Types.VARCHAR);
 			 else
-	             pst.setString(1, nombre);
+	             cs.setString(1, nombre);
 
 	            if (talla == null)
-	            	pst.setNull(2, Types.VARCHAR);
+	            	cs.setNull(2, Types.VARCHAR);
 				 else
-	                pst.setString(2, talla);
+	                cs.setString(2, talla);
 
 	            if (color == null)
-	            	pst.setNull(3, Types.VARCHAR);
+	            	cs.setNull(3, Types.VARCHAR);
 				 else
-	                pst.setString(3, color);
+	                cs.setString(3, color);
 			
-	            ResultSet rs = pst.executeQuery();
+	            ResultSet rs = cs.executeQuery();
 	            
 	            while(rs.next()) {
 	            	Categoria cat1 = new Categoria(rs.getInt("idCategoria"), rs.getString("nombre"));
