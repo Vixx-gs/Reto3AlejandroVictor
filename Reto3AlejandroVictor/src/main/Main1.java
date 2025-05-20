@@ -110,7 +110,7 @@ public class Main1 {
 			} while (true);
 
 			switch(opcion) {
-			case 1: listarProductos(producto);
+			case 1: 
 				break;
 			case 2: 
 				String nombre = Funciones.dimeString("Introduce un nombre", sc);
