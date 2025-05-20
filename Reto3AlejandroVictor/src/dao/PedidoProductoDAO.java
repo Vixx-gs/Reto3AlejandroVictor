@@ -3,8 +3,11 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import Util.Conexion;
 import clases.Categoria;
@@ -47,6 +50,19 @@ public class PedidoProductoDAO {
 				Conexion.cierraConexion();
 			}
 			return lista;
+	}
+	
+	public static Cliente buscarClienteId(int codigo) throws SQLException{
+		Connection con= Conexion.abreConexion();
+		PreparedStatement pst= con.prepareStatement("Select idcliente, nombre, direccion from clientes where codigo = ?");
+		pst.setInt(1, codigo);
+		ResultSet rs = pst.executeQuery();
+		
+		if(rs.next()) {
+			Cliente datos = new Cliente(rs.getInt("idcliente"), rs.getString("nombre"), rs.getString("direccion"), codigo);
+			return datos;
+		}
+		return null;
 	}
 
 }
