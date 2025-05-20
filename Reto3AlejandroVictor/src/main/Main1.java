@@ -116,7 +116,7 @@ public class Main1 {
 				System.out.println("Seleccione una de las siguientes categorias");
 				System.out.println(CategoriaDAO.listarCategorias()); 
 				num=Funciones.dimeEntero("Seleccione una de las siguientes categorias", sc);
-				/*MostrarProductosPorCategoria*/
+				ProductosDAO.listaProductosPorCategoria(num);
 				
 				break;
 			case 2: 
