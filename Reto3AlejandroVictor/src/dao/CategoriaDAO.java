@@ -9,6 +9,7 @@ import java.util.List;
 
 import Util.Conexion;
 import clases.Categoria;
+import clases.Producto;
 
 public class CategoriaDAO {
 
@@ -73,6 +74,34 @@ public class CategoriaDAO {
 			
 		}
 	}
+	public static List <Categoria> listarCategorias(){
+		List<Categoria>listaCategoria = new ArrayList<>();
+		try {
+			// Abro conexion
+			Connection con = Conexion.abreConexion();
+			// Preparo consulta
+			PreparedStatement pst = con.prepareStatement("Select idcategoria, nombre"
+					+ " from categorias");
+			ResultSet rs= pst.executeQuery();
+			while(rs.next()) {
+				Categoria cat= new Categoria();
+				cat.setIdCategoria(rs.getInt("idcategoria"));
+				cat.setNombre(rs.getString("nombre"));
+				
+				
+				listaCategoria.add(cat);
+		}
+			
+			
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return listaCategoria;
+	}
+	
 	public static void inserta(Categoria categoria)
 	{
 		try {

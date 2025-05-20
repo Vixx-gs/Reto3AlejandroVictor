@@ -92,7 +92,7 @@ public class ProductosDAO {
 					+ " from categorias");
 			pst.setInt(1, prod.getIdCategoria().getIdCategoria());
 			pst.setString(2, prod.getNombre());
-			System.out.println("Seleccione una categoria existente");
+			
 			
 			PreparedStatement pst1=con.prepareStatement("select productos.nombre, productos.precio, productos.descripcion,"
 					+ "productos.color, productos.talla, productos.stock"
