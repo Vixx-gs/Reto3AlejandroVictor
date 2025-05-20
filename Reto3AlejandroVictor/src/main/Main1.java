@@ -22,6 +22,7 @@ public class Main1 {
 		Producto producto= new Producto();
 		
 		int opcion = 0;
+		int num=0;
 		
 		do {
 			try {
@@ -111,24 +112,22 @@ public class Main1 {
 			} while (true);
 
 			switch(opcion) {
-			case 1: ProductosDAO.listarProductos(producto);
+			case 1:
+				System.out.println("Seleccione una de las siguientes categorias");
+				System.out.println(CategoriaDAO.listarCategorias()); 
+				num=Funciones.dimeEntero("Seleccione una de las siguientes categorias", sc);
+				/*MostrarProductosPorCategoria*/
+				
 				break;
 			case 2: 
-				System.out.println("Introduce nombre");
-				String nombre = sc.nextLine();
-				System.out.println("Introduce talla");
-				String talla = sc.nextLine();
-				System.out.println("Introduce color");
-				String color = sc.nextLine();
+				String nombre = Funciones.dimeString("Introduce un nombre", sc);
+				String talla = Funciones.dimeString("Introduce una talla", sc);
+				String color = Funciones.dimeString("Introduce un color", sc);
 				List<Producto>productos = ProductosDAO.buscarProductos(nombre, talla, color);
 				for(Producto p : productos) {
-					System.out.println("idCategoria" + p.getIdCategoria());
 					System.out.println("nombre" + p.getNombre());
-					System.out.println("precio" + p.getPrecio());
-					System.out.println("descripcion" + p.getDescripcion());
-					System.out.println("color" + p.getColor());
 					System.out.println("talla" + p.getTalla());
-					System.out.println("stock" + p.getStock());
+					System.out.println("color" + p.getColor());
 				}
 				break;
 			}
