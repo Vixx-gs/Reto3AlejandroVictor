@@ -6,9 +6,9 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import Clases.Cliente;
-import Clases.Pedido;
 import Util.Conexion;
+import clases.Cliente;
+import clases.Pedido;
 
 public class PedidoDAO {
 	public static List<Pedido> lista() {
