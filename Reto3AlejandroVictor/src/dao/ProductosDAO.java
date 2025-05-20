@@ -103,6 +103,35 @@ public class ProductosDAO {
 			e.printStackTrace();
 		}
 		
+	}public static List<Producto>listaProductosPorCategoria(int num){
+		List<Producto> listaProductos= new ArrayList<Producto>();
+		
+		try {
+			//Abro conexion
+			Connection con= Conexion.abreConexion();
+			
+			//Preparo consulta
+			PreparedStatement pst= con.prepareStatement("select nombre, precio, descripcion,"
+					+ "color, talla, stock "
+					+ "from productos"
+					+ "where idcategoria=?");
+			pst.setInt(1, num);
+			
+			//Conjunto de resultados
+			ResultSet rs= pst.executeQuery();
+			while(rs.next()) {
+				Producto prod= new Producto(rs.getString("nombre"), rs.getDouble("precio"),
+						rs.getString("descripcion"), rs.getString("color"),
+						rs.getString("talla"), rs.getInt("stock"));
+				
+				
+				listaProductos.add(prod);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return listaProductos;
+		
 	}
 	
 	public static List<Producto>buscarProductos(String nombre, String talla, String color) throws SQLException{
