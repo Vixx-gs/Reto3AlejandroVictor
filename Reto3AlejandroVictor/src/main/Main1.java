@@ -19,6 +19,7 @@ public class Main1 {
 	public static void main(String[] args) throws SQLException {
 		Scanner sc = new Scanner(System.in);
 		Random r = new Random();
+		Producto producto= new Producto();
 		
 		int opcion = 0;
 		
@@ -110,7 +111,7 @@ public class Main1 {
 			} while (true);
 
 			switch(opcion) {
-			case 1: listarProductos(producto);
+			case 1: ProductosDAO.listarProductos(producto);
 				break;
 			case 2: 
 				String nombre = Funciones.dimeString("Introduce un nombre", sc);
