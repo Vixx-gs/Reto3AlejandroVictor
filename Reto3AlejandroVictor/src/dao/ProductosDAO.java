@@ -82,28 +82,9 @@ public class ProductosDAO {
 		}
 		
 	}
-	public static List <Producto> listarProductos(Producto prod){
-		List<Producto>productos = new ArrayList<>();
-		try {
-			// Abro conexion
-			Connection con = Conexion.abreConexion();
-			// Preparo consulta
-			PreparedStatement pst = con.prepareStatement("Select categorias.idcategoria,categorias.nombre"
-					+ " from categorias");
-			pst.setInt(1, prod.getIdCategoria().getIdCategoria());
-			pst.setString(2, prod.getNombre());
-			
-			
-			PreparedStatement pst1=con.prepareStatement("select productos.nombre, productos.precio, productos.descripcion,"
-					+ "productos.color, productos.talla, productos.stock"
-					+ " from productos inner join categorias"
-					+ " on idcategoria=idcategoria "
-					+ "where idcategoria=?");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	
 		
-	}public static List<Producto>listaProductosPorCategoria(int num){
+	public static List<Producto>listaProductosPorCategoria(int num){
 		List<Producto> listaProductos= new ArrayList<Producto>();
 		
 		try {
