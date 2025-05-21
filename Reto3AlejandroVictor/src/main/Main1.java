@@ -259,17 +259,37 @@ public class Main1 {
 
 	}
 	
-	public static Cliente obtenerCliente(Scanner sc) {
-		Cliente cliente = new Cliente();
-		while(true){
+	public static Cliente obtenerCliente(Scanner sc) throws SQLException {
+		do{
 			int codigo = Funciones.dimeEntero("Introduce un codigo hasta que sea -1 para salir", sc);
 			if(codigo==-1) {
 				return null;
 			}
-			Cliente cliente = ClienteDAO.obtenerporCodigo
+			Cliente cliente = ClientesDAO.obtenerporCodigo(codigo);
+			if(cliente != null) {
+				System.out.println("Cliente encontrado" + cliente.getNombre());
+				return cliente;
+			}
+			else {
+				System.out.println("Cliente no encontrado");
+			}
 			
 			
-		}
+		}while(true);
+	}
+	
+	public static List<Producto>seleccionaProductos(Scanner sc){
+		Producto producto = new Producto();
+		List<Producto>prodseleccionados = new ArrayList<>();
+		do {
+			String nombre = Funciones.dimeString("Introduce nombre del producto (Dejar vacio para terminar)", sc);
+			if(nombre.isEmpty()) {
+				break;
+			}
+			producto = ProductosDAO.obtenerporNombre(nombre);
+		}while(!true);
+		
+		
 	}
 
 	

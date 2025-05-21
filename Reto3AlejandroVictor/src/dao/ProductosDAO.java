@@ -155,5 +155,24 @@ public class ProductosDAO {
 		
 	}
 	
+	public static Producto obtenerporNombre(String nombre) throws SQLException {
+		Producto producto = null;
+		try(Connection con = Conexion.abreConexion();){
+			PreparedStatement pst = con.prepareStatement("Select * from producto where nombre = ?");
+			pst.setString(1, nombre);
+			ResultSet rs = pst.executeQuery();
+			
+			if(rs.next()) {
+				Categoria cat = new Categoria(rs.getInt("idCategoria"));
+				producto = new Producto(cat, rs.getString("nombre"), rs.getDouble("precio"), rs.getString("descripcion"), 
+						rs.getString("color"), rs.getString("talla"), rs.getInt("stock"));
+			}
+		
+	}catch (Exception e) {
+		e.printStackTrace();
+	}
+		return producto;
 	
+	
+	}
 }
