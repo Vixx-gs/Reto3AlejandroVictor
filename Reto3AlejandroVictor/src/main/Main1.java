@@ -19,6 +19,7 @@ public class Main1 {
 	public static void main(String[] args) throws SQLException {
 		Scanner sc = new Scanner(System.in);
 		Random r = new Random();
+		System.out.println("hola");
 		Producto producto= new Producto();
 		
 		int opcion = 0;
@@ -113,11 +114,11 @@ public class Main1 {
 
 			switch(opcion) {
 			case 1:
-				System.out.println("Seleccione una de las siguientes categorias");
+				System.out.println("A continuacion se mostraran las categorias");
 				System.out.println(CategoriaDAO.listarCategorias()); 
 				num=Funciones.dimeEntero("Seleccione una de las siguientes categorias", sc);
-				ProductosDAO.listaProductosPorCategoria(num);
 				
+				System.out.println(ProductosDAO.listaProductosPorCategoria(num));
 				break;
 			case 2: 
 				String nombre = Funciones.dimeString("Introduce un nombre", sc);
