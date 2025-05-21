@@ -19,21 +19,16 @@ public class Main1 {
 	public static void main(String[] args) throws SQLException {
 		Scanner sc = new Scanner(System.in);
 		Random r = new Random();
-		System.out.println("hola");
-		Producto producto= new Producto();
-		
+		Producto producto = new Producto();
+
 		int opcion = 0;
-		int num=0;
-		
+		int num = 0;
+
 		do {
 			try {
-				opcion = Funciones.dimeEntero("Introduzca una de las siguientes opciones. \n"
-						+ "1.Mantenimientos \n"
-						+ "2. Catalogo productos \n"
-						+ "3.Pedidos \n"
-						+ "4. Informes", sc);
+				opcion = Funciones.dimeEntero("Introduzca una de las siguientes opciones. \n" + "1.Mantenimientos \n"
+						+ "2. Catalogo productos \n" + "3.Pedidos \n" + "4. Informes", sc);
 				if (opcion < 5 && opcion > 0)
-					
 					break;
 
 			} catch (Exception e) {
@@ -41,7 +36,7 @@ public class Main1 {
 			}
 		} while (true);
 
-/*SubMenu1*/ switch (opcion) {
+		/* SubMenu1 */ switch (opcion) {
 		case 1:
 
 			System.out.println(
@@ -67,7 +62,7 @@ public class Main1 {
 
 			case 2:
 				gestionProductos();
-				break; 
+				break;
 			case 3:
 				System.out.println(
 						"1.3.1. Alta de nuevos clientes: pide por consola los datos de un nuevo cliente e insértalo en la BD\n"
@@ -84,23 +79,22 @@ public class Main1 {
 						System.out.println("Formato invalido");
 					}
 				} while (true);
-				
-				switch(opcion) {
+
+				switch (opcion) {
 				case 1:
 					gestionClientes();
 					break;
-				case 2: int code = Funciones.dimeEntero("Introduce codigo", sc);
-					ClientesDAO.buscarCliente(code);
+				case 2:
+					vercode(sc);
 					break;
 				}
-				
+
 				break;
 			}
+			break;
+		/* SubMenu2 */ case 2:
+			System.out.println("2.1 Listar productos por categoria \n" + "2.2 Buscar productos.");
 
-/*SubMenu2*/ case 2:
-			System.out.println("2.1 Listar productos por categoria \n"
-					+ "2.2 Buscar productos.");
-			
 			do {
 				try {
 					opcion = Funciones.dimeEntero("Introduzca una opcion del 1 al 2", sc);
@@ -112,74 +106,61 @@ public class Main1 {
 				}
 			} while (true);
 
-			switch(opcion) {
+			switch (opcion) {
 			case 1:
-				System.out.println("A continuacion se mostraran las categorias");
-				System.out.println(CategoriaDAO.listarCategorias()); 
-				num=Funciones.dimeEntero("Seleccione una de las siguientes categorias", sc);
-				
-				System.out.println(ProductosDAO.listaProductosPorCategoria(num));
+				mostrarCat(num, sc);
 				break;
-			case 2: 
-				String nombre = Funciones.dimeString("Introduce un nombre", sc);
-				String talla = Funciones.dimeString("Introduce una talla", sc);
-				String color = Funciones.dimeString("Introduce un color", sc);
-				List<Producto>productos = ProductosDAO.buscarProductos(nombre, talla, color);
-				for(Producto p : productos) {
-					System.out.println("nombre" + p.getNombre());
-					System.out.println("talla" + p.getTalla());
-					System.out.println("color" + p.getColor());
+			case 2:
+				buscarProd(sc);
+				break;
+			}
+
+			break;
+
+		/* SubMenu3 */ case 3:
+			System.out.println("3.1 Crear pedido \n" + "3.2 Ver pedidos.");
+			do {
+				try {
+					opcion = Funciones.dimeEntero("Introduzca una opcion del 1 al 2", sc);
+					if (opcion < 3 && opcion > 0)
+						break;
+
+				} catch (Exception e) {
+					System.out.println("Formato invalido");
 				}
+			} while (true);
+			switch (opcion) {
+			case 1: /* crearPedido(pedido); */
+				break;
+			case 2: /* verPedido(pedido); */
 				break;
 			}
-			
+
 			break;
 
-/*SubMenu3*/	case 3: System.out.println("3.1 Crear pedido \n"
-				+ "3.2 Ver pedidos.");
-		do {
-			try {
-				opcion = Funciones.dimeEntero("Introduzca una opcion del 1 al 2", sc);
-				if (opcion < 3 && opcion > 0)
-					break;
+		/* SubMenu4 */case 4:
+			System.out.println("Informes \n" + "4.1- Bajo stock \n " + "4.2-Pedidos por cliente \n"
+					+ "4.3-Productos mas vendidos ");
+			do {
+				try {
+					opcion = Funciones.dimeEntero("Introduzca una opcion del 1 al 3", sc);
+					if (opcion < 4 && opcion > 0)
+						break;
 
-			} catch (Exception e) {
-				System.out.println("Formato invalido");
+				} catch (Exception e) {
+					System.out.println("Formato invalido");
+				}
+			} while (true);
+
+			switch (opcion) {
+			case 1:
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
 			}
-		} while (true);
-		switch(opcion) {
-		case 1: /*crearPedido(pedido);*/
-			break;
-		case 2: /*verPedido(pedido);*/
-			break;
-		}
-		
-			break;
 
-/*SubMenu4*/case 4: System.out.println("Informes \n"
-				+ "4.1- Bajo stock \n "
-				+ "4.2-Pedidos por cliente \n"
-				+ "4.3-Productos mas vendidos ");
-		do {
-			try {
-				opcion = Funciones.dimeEntero("Introduzca una opcion del 1 al 3", sc);
-				if (opcion < 4 && opcion > 0)
-					break;
-
-			} catch (Exception e) {
-				System.out.println("Formato invalido");
-			}
-		} while (true);
-		
-		switch(opcion) {
-		case 1:
-			break;
-		case 2: 
-			break;
-		case 3:
-			break;
-		}
-		
 			break;
 
 		}
@@ -218,7 +199,6 @@ public class Main1 {
 		Scanner sc = new Scanner(System.in);
 		int categoriaElegida = 0;
 		Producto producto = new Producto();
-		
 
 		String sNombre = Funciones.dimeString("Introduzca un nombre de un producto", sc);
 		producto.setNombre(sNombre);
@@ -259,39 +239,63 @@ public class Main1 {
 
 	}
 	
+	public static void vercode(Scanner sc) {
+		int code = Funciones.dimeEntero("Introduce codigo", sc);
+		ClientesDAO.buscarCliente(code);
+	}
+	
+	public static void mostrarCat(int num, Scanner sc) {
+		System.out.println("A continuacion se mostraran las categorias");
+		System.out.println(CategoriaDAO.listarCategorias());
+		num = Funciones.dimeEntero("Seleccione una de las siguientes categorias", sc);
+
+		System.out.println(ProductosDAO.listaProductosPorCategoria(num));
+	}
+	
+	public static void buscarProd(Scanner sc) throws SQLException {
+		String nombre = Funciones.dimeString("Introduce un nombre", sc);
+		String talla = Funciones.dimeString("Introduce una talla", sc);
+		String color = Funciones.dimeString("Introduce un color", sc);
+		List<Producto> productos = ProductosDAO.buscarProductos(nombre, talla, color);
+		for (Producto p : productos) {
+			System.out.println("nombre" + p.getNombre());
+			System.out.println("talla" + p.getTalla());
+			System.out.println("color" + p.getColor());
+		}
+	}
+
 	public static Cliente obtenerCliente(Scanner sc) throws SQLException {
-		do{
+		do {
 			int codigo = Funciones.dimeEntero("Introduce un codigo hasta que sea -1 para salir", sc);
-			if(codigo==-1) {
+			if (codigo == -1) {
 				return null;
 			}
 			Cliente cliente = ClientesDAO.obtenerporCodigo(codigo);
-			if(cliente != null) {
+			if (cliente != null) {
 				System.out.println("Cliente encontrado" + cliente.getNombre());
 				return cliente;
-			}
-			else {
+			} else {
 				System.out.println("Cliente no encontrado");
 			}
-			
-			
-		}while(true);
+
+		} while (true);
 	}
-	
-	public static List<Producto>seleccionaProductos(Scanner sc){
+
+	public static List<Producto> seleccionaProductos(Scanner sc) throws SQLException {
 		Producto producto = new Producto();
-		List<Producto>prodseleccionados = new ArrayList<>();
+		List<Producto> prodseleccionados = new ArrayList<>();
 		do {
 			String nombre = Funciones.dimeString("Introduce nombre del producto (Dejar vacio para terminar)", sc);
-			if(nombre.isEmpty()) {
+			if (nombre.isEmpty()) {
 				break;
 			}
 			producto = ProductosDAO.obtenerporNombre(nombre);
-		}while(!true);
-		
-		
-	}
+			if (producto == null) {
 
-	
+			}
+		} while (!true);
+
+		return null;
+	}
 
 }
