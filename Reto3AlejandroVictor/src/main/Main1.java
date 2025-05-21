@@ -88,7 +88,6 @@ public class Main1 {
 					vercode(sc);
 					break;
 				}
-
 				break;
 			}
 			break;
