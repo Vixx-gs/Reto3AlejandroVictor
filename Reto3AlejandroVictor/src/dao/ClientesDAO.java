@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -111,5 +112,26 @@ public class ClientesDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static Cliente obtenerporCodigo(int codigo) throws SQLException {
+		Cliente cliente = null;
+		try(Connection con = Conexion.abreConexion();){
+			PreparedStatement pst = con.prepareStatement("Select * from cliente where codigo = ?");
+			pst.setInt(1, codigo);
+			ResultSet rs = pst.executeQuery();
+			
+			if(rs.next()) {
+				cliente = new Cliente();
+				cliente.setNombre(rs.getString("nombre"));
+				cliente.setDireccion(rs.getString("direccion"));
+				cliente.setCodigo(rs.getInt("codigo"));
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return cliente;
 	}
 }

@@ -90,7 +90,7 @@ public class ProductosDAO {
 		try {
 			//Abro conexion
 			Connection con= Conexion.abreConexion();
-			System.out.println(num);
+			
 			//Preparo consulta
 			PreparedStatement pst= con.prepareStatement("select nombre, precio, descripcion,"
 					+ "color, talla, stock "
@@ -100,12 +100,10 @@ public class ProductosDAO {
 			
 			//Conjunto de resultados
 			ResultSet rs= pst.executeQuery();
-			
 			while(rs.next()) {
 				Producto prod= new Producto(rs.getString("nombre"), rs.getDouble("precio"),
 						rs.getString("descripcion"), rs.getString("color"),
 						rs.getString("talla"), rs.getInt("stock"));
-				System.out.println("giii"+prod);
 				
 				
 				listaProductos.add(prod);

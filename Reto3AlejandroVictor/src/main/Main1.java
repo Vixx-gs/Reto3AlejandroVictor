@@ -118,10 +118,7 @@ public class Main1 {
 				System.out.println(CategoriaDAO.listarCategorias()); 
 				num=Funciones.dimeEntero("Seleccione una de las siguientes categorias", sc);
 				
-				List<Producto> listaProductos=ProductosDAO.listaProductosPorCategoria(num);
-				for (Producto producto2 : listaProductos) {
-				
-				}
+				System.out.println(ProductosDAO.listaProductosPorCategoria(num));
 				break;
 			case 2: 
 				String nombre = Funciones.dimeString("Introduce un nombre", sc);
@@ -261,5 +258,20 @@ public class Main1 {
 		ProductosDAO.insertaProducto(producto);
 
 	}
+	
+	public static Cliente obtenerCliente(Scanner sc) {
+		Cliente cliente = new Cliente();
+		while(true){
+			int codigo = Funciones.dimeEntero("Introduce un codigo hasta que sea -1 para salir", sc);
+			if(codigo==-1) {
+				return null;
+			}
+			Cliente cliente = ClienteDAO.obtenerporCodigo
+			
+			
+		}
+	}
+
+	
 
 }
