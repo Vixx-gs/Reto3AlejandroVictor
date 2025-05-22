@@ -1,8 +1,10 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,4 +40,27 @@ public class PedidoDAO {
 		return lista;
 
 	}
+	
+	 public void inserta(Pedido pedido) {
+	        try (Connection con = Conexion.abreConexion()) {
+	            String sql = "INSERT INTO pedido (idCliente, precioTotal, direccionEnvio, fecha) VALUES (?, ?, ?, ?)";
+	            PreparedStatement ps = con.prepareStatement(sql);
+
+	            ps.setInt(1, pedido.getIdcliente().getIdCliente());
+	            ps.setDouble(2, pedido.getPrecioTotal());
+	            ps.setString(3, pedido.getDireccionEnvio());
+	            ps.setDate(4, new Date(System.currentTimeMillis())); // o pedido.getFecha() si ya lo tiene
+
+	            int filas = ps.executeUpdate();
+
+	            if (filas > 0) {
+	                System.out.println("Pedido guardado");
+	            } else {
+	                System.out.println("Error al guardar el pedido");
+	            }
+
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
 }
