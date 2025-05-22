@@ -21,149 +21,152 @@ public class Main1 {
 		Random r = new Random();
 		Producto producto = new Producto();
 
-		int opcion = 0;
-		int num = 0;
+		int opcion = -1;
+
+		// Bucle principal del menú
 
 		do {
 			try {
-				opcion = Funciones.dimeEntero("Introduzca una de las siguientes opciones. \n" + "1.Mantenimientos \n"
-						+ "2. Catalogo productos \n" + "3.Pedidos \n" + "4. Informes", sc);
-				if (opcion < 5 && opcion > 0)
-					break;
-
-			} catch (Exception e) {
-				System.out.println("Formato invalido");
-			}
-		} while (true);
-
-		/* SubMenu1 */ switch (opcion) {
-		case 1:
-
-			System.out.println(
-					"1.1. Gestión de categorías: pide por consola los datos de una nueva categoría e insertala en la BD.\n"
-							+ "1.2. Gestión de productos: pide por consola los datos de un producto, muestras las categorías con su id,\n"
-							+ "que el cliente elija una e inserta el producto en la BD.\n"
-							+ "1.3. Gestión de clientes: se mostrará el siguiente submenú\n" + "");
-
-			do {
-				try {
-					opcion = Funciones.dimeEntero("Introduzca una opcion del 1 al 3", sc);
-					if (opcion < 4 && opcion > 0)
-						break;
-
-				} catch (Exception e) {
-					System.out.println("Formato invalido");
-				}
-			} while (true);
-			/* switch2 */ switch (opcion) {
-			case 1:
-				gestionCategorias();
-				break;
-
-			case 2:
-				gestionProductos();
-				break;
-			case 3:
-				System.out.println(
-						"1.3.1. Alta de nuevos clientes: pide por consola los datos de un nuevo cliente e insértalo en la BD\n"
-								+ "1.3.2. Búsqueda por código: pide por consola el código del cliente y búscalo en la BD, mostrando todos\n"
-								+ "sus datos si está. Si no existe que lo diga. Pide por consola todos sus datos excepto el id y lo\n"
-								+ "actualizas en la base de datos.\n" + "");
-				do {
-					try {
-						opcion = Funciones.dimeEntero("Introduzca una opcion del 1 al 2", sc);
-						if (opcion < 3 && opcion > 0)
-							break;
-
-					} catch (Exception e) {
-						System.out.println("Formato invalido");
-					}
-				} while (true);
+				opcion = Funciones.dimeEntero("Introduzca una de las siguientes opciones:\n" + "1. Mantenimientos\n"
+						+ "2. Catálogo productos\n" + "3. Pedidos\n" + "4. Informes\n" + "0. Salir", sc);
 
 				switch (opcion) {
 				case 1:
-					gestionClientes();
+					int subOpcion1 = 0;
+					do {
+						try {
+							subOpcion1 = Funciones.dimeEntero("1. Gestión de categorías\n" + "2. Gestión de productos\n"
+									+ "3. Gestión de clientes\n" + "0. Volver", sc);
+							switch (subOpcion1) {
+							case 1:
+								gestionCategorias();
+								break;
+							case 2:
+								gestionProductos();
+								break;
+							case 3:
+								int subOpcionClientes = 0;
+								do {
+									try {
+										subOpcionClientes = Funciones.dimeEntero("1. Alta de nuevos clientes\n"
+												+ "2. Búsqueda por código\n" + "0. Volver", sc);
+										switch (subOpcionClientes) {
+										case 1:
+											gestionClientes();
+											break;
+										case 2:
+											vercode(sc);
+											break;
+										case 0:
+											break;
+										default:
+											System.out.println("Opción inválida");
+										}
+									} catch (Exception e) {
+										System.out.println("Formato inválido");
+										sc.nextLine();
+									}
+								} while (subOpcionClientes != 0);
+								break;
+							case 0:
+								break;
+							default:
+								System.out.println("Opción inválida");
+							}
+						} catch (Exception e) {
+							System.out.println("Formato inválido");
+							sc.nextLine();
+						}
+					} while (subOpcion1 != 0);
 					break;
+
 				case 2:
-					vercode(sc);
+					int subOpcion2 = 0;
+					do {
+						try {
+							subOpcion2 = Funciones.dimeEntero(
+									"1. Listar productos por categoría\n" + "2. Buscar productos\n" + "0. Volver", sc);
+							switch (subOpcion2) {
+							case 1:
+								mostrarCat(0, sc);
+								break;
+							case 2:
+								buscarProd(sc);
+								break;
+							case 0:
+								break;
+							default:
+								System.out.println("Opción inválida");
+							}
+						} catch (Exception e) {
+							System.out.println("Formato inválido");
+							sc.nextLine();
+						}
+					} while (subOpcion2 != 0);
 					break;
+
+				case 3:
+					int subOpcion3 = 0;
+					do {
+						try {
+							subOpcion3 = Funciones.dimeEntero("1. Crear pedido\n" + "2. Ver pedidos\n" + "0. Volver",
+									sc);
+							switch (subOpcion3) {
+							case 1:
+								// crearPedido(pedido);
+								break;
+							case 2:
+								// verPedido(pedido);
+								break;
+							case 0:
+								break;
+							default:
+								System.out.println("Opción inválida");
+							}
+						} catch (Exception e) {
+							System.out.println("Formato inválido");
+							sc.nextLine();
+						}
+					} while (subOpcion3 != 0);
+					break;
+
+				case 4:
+					int subOpcion4;
+					do {
+						try {
+							subOpcion4 = Funciones.dimeEntero("1. Bajo stock\n" + "2. Pedidos por cliente\n"
+									+ "3. Productos más vendidos\n" + "0. Volver", sc);
+							switch (subOpcion4) {
+							case 1:
+								break;
+							case 2:
+								break;
+							case 3:
+								break;
+							case 0:
+								break;
+							default:
+								System.out.println("Opción inválida");
+							}
+						} catch (Exception e) {
+							System.out.println("Formato inválido");
+							sc.nextLine();
+						}
+					} while (subOpcion4 != 0);
+					break;
+
+				case 0:
+					System.out.println("Saliendo del sistema.");
+					break;
+
+				default:
+					System.out.println("Opción inválida");
 				}
-				break;
+			} catch (Exception e) {
+				System.out.println("Formato inválido");
+				sc.nextLine();
 			}
-			break;
-		/* SubMenu2 */ case 2:
-			System.out.println("2.1 Listar productos por categoria \n" + "2.2 Buscar productos.");
-
-			do {
-				try {
-					opcion = Funciones.dimeEntero("Introduzca una opcion del 1 al 2", sc);
-					if (opcion < 3 && opcion > 0)
-						break;
-
-				} catch (Exception e) {
-					System.out.println("Formato invalido");
-				}
-			} while (true);
-
-			switch (opcion) {
-			case 1:
-				mostrarCat(num, sc);
-				break;
-			case 2:
-				buscarProd(sc);
-				break;
-			}
-
-			break;
-
-		/* SubMenu3 */ case 3:
-			System.out.println("3.1 Crear pedido \n" + "3.2 Ver pedidos.");
-			do {
-				try {
-					opcion = Funciones.dimeEntero("Introduzca una opcion del 1 al 2", sc);
-					if (opcion < 3 && opcion > 0)
-						break;
-
-				} catch (Exception e) {
-					System.out.println("Formato invalido");
-				}
-			} while (true);
-			switch (opcion) {
-			case 1: /* crearPedido(pedido); */
-				break;
-			case 2: /* verPedido(pedido); */
-				break;
-			}
-
-			break;
-
-		/* SubMenu4 */case 4:
-			System.out.println("Informes \n" + "4.1- Bajo stock \n " + "4.2-Pedidos por cliente \n"
-					+ "4.3-Productos mas vendidos ");
-			do {
-				try {
-					opcion = Funciones.dimeEntero("Introduzca una opcion del 1 al 3", sc);
-					if (opcion < 4 && opcion > 0)
-						break;
-
-				} catch (Exception e) {
-					System.out.println("Formato invalido");
-				}
-			} while (true);
-
-			switch (opcion) {
-			case 1:
-				break;
-			case 2:
-				break;
-			case 3:
-				break;
-			}
-
-			break;
-
-		}
-
+		} while (opcion != 0);
 	}
 
 	public static void gestionCategorias() {
@@ -237,12 +240,12 @@ public class Main1 {
 		ProductosDAO.insertaProducto(producto);
 
 	}
-	
+
 	public static void vercode(Scanner sc) {
 		int code = Funciones.dimeEntero("Introduce codigo", sc);
 		ClientesDAO.buscarCliente(code);
 	}
-	
+
 	public static void mostrarCat(int num, Scanner sc) {
 		System.out.println("A continuacion se mostraran las categorias");
 		System.out.println(CategoriaDAO.listarCategorias());
@@ -250,7 +253,7 @@ public class Main1 {
 
 		System.out.println(ProductosDAO.listaProductosPorCategoria(num));
 	}
-	
+
 	public static void buscarProd(Scanner sc) throws SQLException {
 		String nombre = Funciones.dimeString("Introduce un nombre", sc);
 		String talla = Funciones.dimeString("Introduce una talla", sc);
