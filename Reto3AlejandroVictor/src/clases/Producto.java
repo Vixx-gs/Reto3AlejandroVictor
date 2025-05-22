@@ -34,6 +34,7 @@ public class Producto {
 	public Producto(String nombre, int stock) {
 		super();
 		this.nombre = nombre;
+		
 		this.stock = stock;
 	}
 
