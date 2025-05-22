@@ -82,7 +82,7 @@ public class ProductosDAO {
 		}
 
 	}
-<<<<<<< HEAD
+
 	public static List<Producto> bajoStock(){
 		List<Producto> listaProductos= new ArrayList<>();
 		try{
