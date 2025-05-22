@@ -142,6 +142,7 @@ public class Main1 {
 									+ "3. Productos más vendidos\n" + "0. Volver", sc);
 							switch (subOpcion4) {
 							case 1:
+								actualizarStock(sc);
 								break;
 							case 2:
 								break;
