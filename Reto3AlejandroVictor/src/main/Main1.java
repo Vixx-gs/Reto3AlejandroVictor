@@ -310,5 +310,12 @@ public class Main1 {
 
 		return prodseleccionados;
 	}
+	
+	public static double calcularPrecioTotal(List<Producto>producto) {
+		double total = 0;
+		for(Producto p : producto) {
+			total += 
+		}
+	}
 
 }
