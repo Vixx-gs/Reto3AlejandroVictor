@@ -88,6 +88,7 @@ public class ProductosDAO {
 		try{
 			//Abre conexion
 			Connection con =Conexion.abreConexion();
+			
 
 			//Preparo consulta
 			PreparedStatement pst= con.prepareStatement("select idcategoria, nombre, precio, descripción, color, talla, stock  from productos where stock>5");
@@ -109,6 +110,27 @@ public class ProductosDAO {
 		}
 			return listaProductos;
 			}
+	public static List<Producto> actualizarStock (String nombre, int num){
+		List<Producto> listaProductos = new ArrayList<Producto>();
+		try {
+			//Abre conexion
+			Connection con= Conexion.abreConexion();
+			
+			//Preparo consulta
+			PreparedStatement pst= con.prepareStatement("update nombre  set ? = +?");
+			
+			//Conjunto de resultados
+			ResultSet rs=pst.executeQuery();
+			while(rs.next()) {
+				Producto prod= new Producto();
+			}
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+	}
 		
 	public static List<Producto> listaProductosPorCategoria(int num) {
 		List<Producto> listaProductos = new ArrayList<Producto>();
