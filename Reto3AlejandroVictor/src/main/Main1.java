@@ -371,6 +371,7 @@ public class Main1 {
 		PedidoDAO.inserta(pedido);
 		for(Producto p : productos) {
 			PedidoProductoDAO.inserta(pedido.getIdpedido(), p, p.getStock());
+			ProductosDAO.reducirStock(p.getIdProducto(), p.getStock());
 		}
 	}
 }
