@@ -8,10 +8,8 @@ import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import Util.Conexion;
-import Util.Funciones;
 import clases.Categoria;
 import clases.Producto;
 
@@ -84,10 +82,45 @@ public class ProductosDAO {
 		}
 
 	}
+<<<<<<< HEAD
+	public static List<Producto> bajoStock(){
+		List<Producto> listaProductos= new ArrayList<>();
+		try{
+			//Abre conexion
+			Connection con =Conexion.abreConexion();
+
+			//Preparo consulta
+			PreparedStatement pst= con.prepareStatement("select idcategoria, nombre, precio, descripción, color, talla, stock  from productos where stock>5");
+
+			//Conjunto de resultados
+			ResultSet rs=pst.executeQuery();
+
+			Categoria cat= new Categoria(rs.getInt("idCategoria"));
+			while(rs.next()){
+			Producto prod= new Producto(cat, rs.getString("nombre"), rs.getDouble("precio"),
+									rs.getString("descripcion"), rs.getString("color"),
+									rs.getString("talla"), rs.getInt("stock"));
+
+			listaProductos.add(prod);
+			}
+} catch (Exception e) {
+			
+			// TODO: handle exception
+		}
+			return listaProductos;
+			}
+		
+	
+		
+	public static List<Producto>listaProductosPorCategoria(int num){
+		List<Producto> listaProductos= new ArrayList<Producto>();
+		
+=======
 
 	public static List<Producto> listaProductosPorCategoria(int num) {
 		List<Producto> listaProductos = new ArrayList<Producto>();
 
+>>>>>>> branch 'main' of https://github.com/Vixx-gs/Reto3AlejandroVictor.git
 		try {
 			// Abro conexion
 			Connection con = Conexion.abreConexion();
