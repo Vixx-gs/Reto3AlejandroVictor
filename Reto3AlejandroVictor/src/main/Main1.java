@@ -117,7 +117,7 @@ public class Main1 {
 									sc);
 							switch (subOpcion3) {
 							case 1:
-								// crearPedido(pedido);
+								guardarPedido(null, null); 
 								break;
 							case 2:
 								// verPedido(pedido);
