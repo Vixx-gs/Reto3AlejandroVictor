@@ -345,9 +345,9 @@ public class Main1 {
 	
 	
 	public static void guardarPedido(Pedido pedido, List<Producto>productos) {
-		PedidoDAO pedidoD = new PedidoDAO();
-		PedidoProductoDAO pedidoproductod = new PedidoProductoDAO();
-		ProductosDAO productod = new ProductosDAO();
-		int idPedido = pedidoD.inserta(pedido);
+		PedidoDAO.inserta(pedido);
+		for(Producto p : productos) {
+			PedidoProductoDAO
+		}
 	}
 }
