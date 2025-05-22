@@ -258,9 +258,12 @@ public class Main1 {
 	}
 
 	public static void buscarProd(Scanner sc) throws SQLException {
-		String nombre = Funciones.dimeString("Introduce un nombre", sc);
-		String talla = Funciones.dimeString("Introduce una talla", sc);
-		String color = Funciones.dimeString("Introduce un color", sc);
+		System.out.println("Introduce nombre");
+		String nombre = sc.next();
+		System.out.println("Introduce talla");
+		String talla = sc.next();
+		System.out.println("Introduce color");
+		String color = sc.next();
 		List<Producto> productos = ProductosDAO.buscarProductos(nombre, talla, color);
 		for (Producto p : productos) {
 			System.out.println("nombre" + p.getNombre());
@@ -317,7 +320,22 @@ public class Main1 {
 	public static double calcularPrecioTotal(List<Producto>producto) {
 		double total = 0;
 		for(Producto p : producto) {
-			total += 
+			total += p.getPrecio()*p.getStock();
+		}
+		return total;
+	}
+	
+	public static String obtenerDireccionEnv(Scanner sc, Cliente cliente) {
+		System.out.println("Direccion actual " + cliente.getDireccion());
+		System.out.println("Usar esta direccion?(s/n)");
+		String respuesta = sc.nextLine();
+		
+		if(respuesta.equalsIgnoreCase("s")) {
+			return cliente.getDireccion();
+		}
+		else {
+			System.out.println("Introduce nueva direccion de envio");
+			return sc.nextLine();
 		}
 	}
 
