@@ -188,7 +188,6 @@ public class Main1 {
 				break;
 		} while (true);
 		
-
 	}
 
 	public static void gestionCategorias() {
