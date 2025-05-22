@@ -9,6 +9,8 @@ import java.util.Scanner;
 import Util.Funciones;
 import clases.Categoria;
 import clases.Cliente;
+import clases.Pedido;
+import clases.PedidoProducto;
 import clases.Producto;
 import dao.CategoriaDAO;
 import dao.ClientesDAO;
@@ -338,5 +340,10 @@ public class Main1 {
 			return sc.nextLine();
 		}
 	}
-
+	
+	
+	public static void guardarPedido(Pedido pedido, List<Producto>productos) {
+		Pedido pedidoD = new Pedido();
+		PedidoProducto pedidoproductod = new PedidoProducto();
+	}
 }
