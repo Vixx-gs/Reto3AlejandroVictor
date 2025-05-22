@@ -173,6 +173,24 @@ public class Main1 {
 		} while (opcion != 0);
 	}
 
+	public static void actualizarStock(Scanner sc) {
+		String nombre = "";
+		int num = 0;
+		System.out.println("Los productos de bajo stock son ");
+		List<Producto> listaBajoStock = ProductosDAO.bajoStock();
+		for (Producto producto : listaBajoStock) {
+			System.out.println(producto);
+		}
+		nombre = Funciones.dimeString("Seleccione un producto de los mostrados para actualizar", sc);
+		do {
+			num = Funciones.dimeEntero("Diga en cuanto quiere actualizarlo", sc);
+			if (num > 0)
+				break;
+		} while (true);
+		
+
+	}
+
 	public static void gestionCategorias() {
 		Categoria categoria = new Categoria();
 		Scanner sc = new Scanner(System.in);
@@ -255,7 +273,7 @@ public class Main1 {
 		System.out.println(CategoriaDAO.listarCategorias());
 		num = Funciones.dimeEntero("Seleccione una de las siguientes categorias", sc);
 
-		List<Producto> listaProductos=ProductosDAO.listaProductosPorCategoria(num);
+		List<Producto> listaProductos = ProductosDAO.listaProductosPorCategoria(num);
 		for (Producto p : listaProductos) {
 			System.out.println(p);
 		}
@@ -307,11 +325,10 @@ public class Main1 {
 			}
 			int cantidad = Funciones.dimeEntero("Cuantas unidades?", sc);
 			int cantidadDisponible = Math.min(cantidad, producto.getStock());
-			
-			if(cantidadDisponible == 0) {
+
+			if (cantidadDisponible == 0) {
 				System.out.println("No hay stock de esta unidad");
-			}
-			else {
+			} else {
 				System.out.println("Añadida " + cantidadDisponible + " unidades de " + producto.getNombre());
 				producto.setStock(cantidadDisponible);
 				prodseleccionados.add(producto);
@@ -320,30 +337,28 @@ public class Main1 {
 
 		return prodseleccionados;
 	}
-	
-	public static double calcularPrecioTotal(List<Producto>producto) {
+
+	public static double calcularPrecioTotal(List<Producto> producto) {
 		double total = 0;
-		for(Producto p : producto) {
-			total += p.getPrecio()*p.getStock();
+		for (Producto p : producto) {
+			total += p.getPrecio() * p.getStock();
 		}
 		return total;
 	}
-	
+
 	public static String obtenerDireccionEnv(Scanner sc, Cliente cliente) {
 		System.out.println("Direccion actual " + cliente.getDireccion());
 		System.out.println("Usar esta direccion?(s/n)");
 		String respuesta = sc.nextLine();
-		
-		if(respuesta.equalsIgnoreCase("s")) {
+
+		if (respuesta.equalsIgnoreCase("s")) {
 			return cliente.getDireccion();
-		}
-		else {
+		} else {
 			System.out.println("Introduce nueva direccion de envio");
 			return sc.nextLine();
 		}
 	}
-	
-	
+
 	public static void guardarPedido(Pedido pedido, List<Producto>productos) {
 		PedidoDAO.inserta(pedido);
 		for(Producto p : productos) {
