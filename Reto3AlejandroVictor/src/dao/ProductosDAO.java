@@ -82,6 +82,10 @@ public class ProductosDAO {
 		}
 		
 	}
+	public static List<Producto> bajoStock(){
+		List<Producto> productos= new ArrayList<>();
+		
+	}
 	
 		
 	public static List<Producto>listaProductosPorCategoria(int num){
