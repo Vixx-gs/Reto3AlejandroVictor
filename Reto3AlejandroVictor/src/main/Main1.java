@@ -370,7 +370,7 @@ public class Main1 {
 	public static void guardarPedido(Pedido pedido, List<Producto>productos) {
 		PedidoDAO.inserta(pedido);
 		for(Producto p : productos) {
-			PedidoProductoDAO.inserta(pedido.getIdpedido(), p.getIdProducto(), p.getStock());
+			PedidoProductoDAO.inserta(pedido.getIdpedido(), p, p.getStock());
 		}
 	}
 }
