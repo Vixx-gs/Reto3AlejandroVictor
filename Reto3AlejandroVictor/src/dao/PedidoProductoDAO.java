@@ -65,7 +65,7 @@ public class PedidoProductoDAO {
 		return null;
 	}
 	
-	   public void inserta(int idPedido, Producto producto, int cantidad) {
+	   public static void inserta(int idPedido, Producto producto, int cantidad) {
 	        try (Connection con = Conexion.abreConexion()){
 	            PreparedStatement ps = con.prepareStatement("INSERT INTO pedido_producto (idPedido, idProducto, cantidad, precioUnitario) VALUES (?, ?, ?, ?)");
 

@@ -223,7 +223,7 @@ public class ProductosDAO {
 
 	}
 	
-    public void reducirStock(int idProducto, int cantidadReducida) {
+    public static void reducirStock(int idProducto, int cantidadReducida) {
         try (Connection con = Conexion.abreConexion()) {
             PreparedStatement ps = con.prepareStatement("UPDATE producto SET stock = stock - ? WHERE idProducto = ?");
             ps.setInt(1, cantidadReducida);
