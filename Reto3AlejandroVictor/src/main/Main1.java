@@ -187,6 +187,13 @@ public class Main1 {
 			if (num > 0)
 				break;
 		} while (true);
+		List<Producto> listaDeActualizarProductos=ProductosDAO.actualizarStock(nombre, num);
+		
+		for (Producto producto : listaDeActualizarProductos) {
+			System.out.println(producto);
+			
+		}
+		System.out.println("Productos actualizados correctamente");
 		
 	}
 
