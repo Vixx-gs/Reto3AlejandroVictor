@@ -38,6 +38,7 @@ public class Producto {
 	}
 
 
+	
 	public Producto(String nombre, double precio, String descripcion, String color, String talla, int stock) {
 		super();
 		this.nombre = nombre;
