@@ -62,5 +62,8 @@ public class PedidoDAO {
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	        }
+	        finally {
+	        	Conexion.cierraConexion();
+	        }
 	    }
 }

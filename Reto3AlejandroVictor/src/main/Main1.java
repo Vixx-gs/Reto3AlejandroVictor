@@ -15,6 +15,7 @@ import clases.Producto;
 import dao.CategoriaDAO;
 import dao.ClientesDAO;
 import dao.PedidoDAO;
+import dao.PedidoProductoDAO;
 import dao.ProductosDAO;
 
 public class Main1 {
@@ -344,9 +345,9 @@ public class Main1 {
 	
 	
 	public static void guardarPedido(Pedido pedido, List<Producto>productos) {
-		Pedido pedidoD = new Pedido();
-		PedidoProducto pedidoproductod = new PedidoProducto();
-		Producto productod = new Producto();
-		int idPedido = PedidoDAO.i
+		PedidoDAO pedidoD = new PedidoDAO();
+		PedidoProductoDAO pedidoproductod = new PedidoProductoDAO();
+		ProductosDAO productod = new ProductosDAO();
+		int idPedido = pedidoD.inserta(pedido);
 	}
 }
