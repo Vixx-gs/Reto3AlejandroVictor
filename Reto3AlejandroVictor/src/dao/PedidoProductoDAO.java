@@ -64,5 +64,31 @@ public class PedidoProductoDAO {
 		}
 		return null;
 	}
+	
+	   public void inserta(int idPedido, Producto producto, int cantidad) {
+	        try (Connection con = Conexion.abreConexion()){
+	            PreparedStatement ps = con.prepareStatement("INSERT INTO pedido_producto (idPedido, idProducto, cantidad, precioUnitario) VALUES (?, ?, ?, ?)");
+
+	            ps.setInt(1, idPedido);
+	            ps.setInt(2, producto.getIdProducto());
+	            ps.setInt(3, cantidad);
+	            ps.setDouble(4, producto.getPrecio());
+
+	            int filas = ps.executeUpdate();
+
+	            if (filas > 0) {
+	                System.out.println("Producto añadido al pedido");
+	            } else {
+	                System.out.println("Error al añadir producto al pedido");
+	            }
+
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	        finally {
+	        	Conexion.cierraConexion();
+	        }
+	    }
+
 
 }
