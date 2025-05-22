@@ -41,7 +41,7 @@ public class PedidoDAO {
 
 	}
 	
-	 public void inserta(Pedido pedido) {
+	 public static void inserta(Pedido pedido) {
 	        try (Connection con = Conexion.abreConexion()) {
 	            String sql = "INSERT INTO pedido (idCliente, precioTotal, direccionEnvio, fecha) VALUES (?, ?, ?, ?)";
 	            PreparedStatement ps = con.prepareStatement(sql);

@@ -347,6 +347,6 @@ public class Main1 {
 		Pedido pedidoD = new Pedido();
 		PedidoProducto pedidoproductod = new PedidoProducto();
 		Producto productod = new Producto();
-		int idPedido = pedidoD.
+		int idPedido = PedidoDAO.i
 	}
 }
