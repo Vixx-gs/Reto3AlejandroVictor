@@ -258,9 +258,12 @@ public class Main1 {
 	}
 
 	public static void buscarProd(Scanner sc) throws SQLException {
-		String nombre = Funciones.dimeString("Introduce un nombre", sc);
-		String talla = Funciones.dimeString("Introduce una talla", sc);
-		String color = Funciones.dimeString("Introduce un color", sc);
+		System.out.println("Introduce nombre");
+		String nombre = sc.next();
+		System.out.println("Introduce talla");
+		String talla = sc.next();
+		System.out.println("Introduce color");
+		String color = sc.next();
 		List<Producto> productos = ProductosDAO.buscarProductos(nombre, talla, color);
 		for (Producto p : productos) {
 			System.out.println("nombre" + p.getNombre());
