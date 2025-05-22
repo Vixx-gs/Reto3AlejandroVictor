@@ -131,7 +131,7 @@ public class Main1 {
 					break;
 
 				case 4:
-					int subOpcion4;
+					int subOpcion4 = 0;
 					do {
 						try {
 							subOpcion4 = Funciones.dimeEntero("1. Bajo stock\n" + "2. Pedidos por cliente\n"
