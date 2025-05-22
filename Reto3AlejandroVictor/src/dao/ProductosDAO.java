@@ -222,4 +222,23 @@ public class ProductosDAO {
 		return producto;
 
 	}
+	
+    public void reducirStock(int idProducto, int cantidadReducida) {
+        try (Connection con = Conexion.abreConexion()) {
+            PreparedStatement ps = con.prepareStatement("UPDATE producto SET stock = stock - ? WHERE idProducto = ?");
+            ps.setInt(1, cantidadReducida);
+            ps.setInt(2, idProducto);
+
+            int filas = ps.executeUpdate();
+
+            if (filas > 0) {
+                System.out.println("Stock actualizado correctamente");
+            } else {
+                System.out.println("Error al actualizar el stock");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
