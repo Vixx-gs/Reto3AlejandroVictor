@@ -90,10 +90,6 @@ public class ProductosDAO {
 		try {
 			//Abro conexion
 			Connection con= Conexion.abreConexion();
-<<<<<<< HEAD
-=======
-			
->>>>>>> branch 'main' of https://github.com/Vixx-gs/Reto3AlejandroVictor.git
 			//Preparo consulta
 			PreparedStatement pst= con.prepareStatement("select nombre, precio, descripcion,"
 					+ "color, talla, stock "
