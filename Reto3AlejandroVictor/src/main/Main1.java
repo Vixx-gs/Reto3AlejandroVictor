@@ -251,7 +251,10 @@ public class Main1 {
 		System.out.println(CategoriaDAO.listarCategorias());
 		num = Funciones.dimeEntero("Seleccione una de las siguientes categorias", sc);
 
-		System.out.println(ProductosDAO.listaProductosPorCategoria(num));
+		List<Producto> listaProductos=ProductosDAO.listaProductosPorCategoria(num);
+		for (Producto p : listaProductos) {
+			System.out.println(p);
+		}
 	}
 
 	public static void buscarProd(Scanner sc) throws SQLException {
