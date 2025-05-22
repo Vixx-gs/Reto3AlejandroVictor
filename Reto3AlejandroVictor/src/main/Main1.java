@@ -293,11 +293,22 @@ public class Main1 {
 			}
 			producto = ProductosDAO.obtenerporNombre(nombre);
 			if (producto == null) {
-
+				System.out.println("Producto no encontrado");
+			}
+			int cantidad = Funciones.dimeEntero("Cuantas unidades?", sc);
+			int cantidadDisponible = Math.min(cantidad, producto.getStock());
+			
+			if(cantidadDisponible == 0) {
+				System.out.println("No hay stock de esta unidad");
+			}
+			else {
+				System.out.println("Añadida " + cantidadDisponible + " unidades de " + producto.getNombre());
+				producto.setStock(cantidadDisponible);
+				prodseleccionados.add(producto);
 			}
 		} while (!true);
 
-		return null;
+		return prodseleccionados;
 	}
 
 }
