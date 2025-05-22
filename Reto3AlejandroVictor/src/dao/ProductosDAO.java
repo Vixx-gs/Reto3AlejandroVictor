@@ -90,7 +90,6 @@ public class ProductosDAO {
 		try {
 			//Abro conexion
 			Connection con= Conexion.abreConexion();
-			System.out.println(num);
 			//Preparo consulta
 			PreparedStatement pst= con.prepareStatement("select nombre, precio, descripcion,"
 					+ "color, talla, stock "
