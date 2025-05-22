@@ -91,10 +91,11 @@ public class ProductosDAO {
 			//Abro conexion
 			Connection con= Conexion.abreConexion();
 			//Preparo consulta
-			PreparedStatement pst= con.prepareStatement("select nombre, precio, descripcion,"
+			/*PreparedStatement pst= con.prepareStatement("select nombre, precio, descripcion,"
 					+ "color, talla, stock "
 					+ "from productos"
-					+ "where idcategoria=?");
+					+ "where idcategoria=?");*/
+			PreparedStatement pst= con.prepareStatement("select * from productos where idcategoria=?");
 			pst.setInt(1, num);
 			
 			//Conjunto de resultados
