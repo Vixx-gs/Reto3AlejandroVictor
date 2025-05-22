@@ -110,17 +110,8 @@ public class ProductosDAO {
 			return listaProductos;
 			}
 		
-	
-		
-	public static List<Producto>listaProductosPorCategoria(int num){
-		List<Producto> listaProductos= new ArrayList<Producto>();
-		
-=======
-
 	public static List<Producto> listaProductosPorCategoria(int num) {
 		List<Producto> listaProductos = new ArrayList<Producto>();
-
->>>>>>> branch 'main' of https://github.com/Vixx-gs/Reto3AlejandroVictor.git
 		try {
 			// Abro conexion
 			Connection con = Conexion.abreConexion();
