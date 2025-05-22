@@ -320,7 +320,22 @@ public class Main1 {
 	public static double calcularPrecioTotal(List<Producto>producto) {
 		double total = 0;
 		for(Producto p : producto) {
-			total += 
+			total += p.getPrecio()*p.getStock();
+		}
+		return total;
+	}
+	
+	public static String obtenerDireccionEnv(Scanner sc, Cliente cliente) {
+		System.out.println("Direccion actual " + cliente.getDireccion());
+		System.out.println("Usar esta direccion?(s/n)");
+		String respuesta = sc.nextLine();
+		
+		if(respuesta.equalsIgnoreCase("s")) {
+			return cliente.getDireccion();
+		}
+		else {
+			System.out.println("Introduce nueva direccion de envio");
+			return sc.nextLine();
 		}
 	}
 
