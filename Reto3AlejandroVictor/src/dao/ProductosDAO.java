@@ -117,19 +117,24 @@ public class ProductosDAO {
 			Connection con= Conexion.abreConexion();
 			
 			//Preparo consulta
-			PreparedStatement pst= con.prepareStatement("update nombre  set ? = +?");
+			PreparedStatement pst= con.prepareStatement("update productos  set stock = ?"
+					+ "where nombre=?");
+			pst.setString(2, nombre);
+			pst.setInt(1, num);
 			
+			pst.execute();			
 			//Conjunto de resultados
 			ResultSet rs=pst.executeQuery();
 			while(rs.next()) {
-				Producto prod= new Producto();
+				Producto prod= new Producto(rs.getString(nombre),rs.getInt(num));
+				listaProductos.add(prod);
 			}
 			
 			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
+		return listaProductos;
 	}
 		
 	public static List<Producto> listaProductosPorCategoria(int num) {
