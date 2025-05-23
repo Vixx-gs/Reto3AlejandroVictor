@@ -6,8 +6,8 @@ package clases;
  * un identificador único, el nombre, la dirección y un código auxiliar
  * (por ejemplo, un código postal o un código interno de la empresa).
  * 
- * @author Tu Nombre
- * @version 1.0
+ * @author Victor Gallego
+ * @version 1
  */
 public class Cliente {
 	private int idCliente;
