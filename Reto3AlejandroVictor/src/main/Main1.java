@@ -17,10 +17,36 @@ import dao.ClientesDAO;
 import dao.PedidoDAO;
 import dao.PedidoProductoDAO;
 import dao.ProductosDAO;
-
+/**
+ * Clase principal del sistema de gestión comercial.
+ * Esta clase contiene el método `main` que lanza el menú de operaciones 
+ * para gestionar categorías, productos, clientes, pedidos e informes.
+ * 
+ * Funcionalidades principales:
+ * - Mantenimiento de datos (categorías, productos, clientes)
+ * - Visualización de catálogo de productos
+ * - Gestión de pedidos
+ * - Generación de informes
+ * 
+ * Uso extensivo de clases DAO para persistencia de datos y 
+ * clases de utilidad para entrada de datos desde consola.
+ * 
+ * @author Victor Gallego	 
+ */
 public class Main1 {
-
+	 /**
+     * Método principal que lanza el menú interactivo del sistema.
+     * Permite seleccionar entre mantenimientos, catálogo de productos, pedidos e informes.
+     * 
+     * @param args Argumentos de línea de comandos (no utilizados)
+     * @throws SQLException si ocurre un error con la base de datos
+     */
 	public static void main(String[] args) throws SQLException {
+		/**
+	     * Actualiza el stock de un producto con bajo nivel de inventario.
+	     * 
+	     * @param sc Scanner para entrada del usuario
+	     */
 		Scanner sc = new Scanner(System.in);
 		Random r = new Random();
 		Producto producto = new Producto();
@@ -173,7 +199,9 @@ public class Main1 {
 			}
 		} while (opcion != 0);
 	}
-
+	/**
+     * Inserta una nueva categoría en la base de datos.
+     */
 	public static void actualizarStock(Scanner sc) {
 		String nombre = "";
 		int num = 0;
@@ -198,7 +226,9 @@ public class Main1 {
 		System.out.println("Productos actualizados correctamente");
 		
 	}
-
+	/**
+     * Inserta una nueva categoría en la base de datos.
+     */
 	public static void gestionCategorias() {
 		Categoria categoria = new Categoria();
 		Scanner sc = new Scanner(System.in);
@@ -206,7 +236,10 @@ public class Main1 {
 		categoria.setNombre(nombre);
 		CategoriaDAO.inserta(categoria);
 	}
-
+	
+	/**
+     * Inserta un nuevo cliente en el sistema, pidiendo información al usuario.
+     */
 	public static void gestionClientes() {
 		Cliente cliente = new Cliente();
 		Scanner sc = new Scanner(System.in);
@@ -226,7 +259,9 @@ public class Main1 {
 		cliente.setCodigo(codigo);
 
 	}
-
+	 /**
+     * Inserta un nuevo producto en el sistema, pidiendo información al usuario.
+     */
 	public static void gestionProductos() {
 		Scanner sc = new Scanner(System.in);
 		int categoriaElegida = 0;
@@ -270,12 +305,21 @@ public class Main1 {
 		ProductosDAO.insertaProducto(producto);
 
 	}
-
+	/**
+     * Permite buscar un cliente por código e imprimir su información.
+     * 
+     * @param sc Scanner para entrada del usuario
+     */
 	public static void vercode(Scanner sc) {
 		int code = Funciones.dimeEntero("Introduce codigo", sc);
 		ClientesDAO.buscarCliente(code);
 	}
-
+	 /**
+     * Muestra las categorías disponibles y lista los productos de la seleccionada.
+     * 
+     * @param num Número de categoría (usado internamente)
+     * @param sc Scanner para entrada del usuario
+     */
 	public static void mostrarCat(int num, Scanner sc) {
 		System.out.println("A continuacion se mostraran las categorias");
 		System.out.println(CategoriaDAO.listarCategorias());
@@ -286,7 +330,12 @@ public class Main1 {
 			System.out.println(p);
 		}
 	}
-
+	/**
+     * Busca productos por nombre, talla y color ingresados por el usuario.
+     * 
+     * @param sc Scanner para entrada del usuario
+     * @throws SQLException si ocurre un error en la consulta
+     */
 	public static void buscarProd(Scanner sc) throws SQLException {
 		System.out.println("Introduce nombre");
 		String nombre = sc.next();
@@ -301,7 +350,13 @@ public class Main1 {
 			System.out.println("color" + p.getColor());
 		}
 	}
-
+	  /**
+     * Permite al usuario ingresar un código de cliente hasta que sea válido o -1 para cancelar.
+     * 
+     * @param sc Scanner para entrada del usuario
+     * @return Cliente encontrado o null si se cancela
+     * @throws SQLException si ocurre un error de base de datos
+     */
 	public static Cliente obtenerCliente(Scanner sc) throws SQLException {
 		do {
 			int codigo = Funciones.dimeEntero("Introduce un codigo hasta que sea -1 para salir", sc);
@@ -318,7 +373,13 @@ public class Main1 {
 
 		} while (true);
 	}
-
+	  /**
+     * Permite seleccionar productos por nombre e ingresar cantidades deseadas.
+     * 
+     * @param sc Scanner para entrada del usuario
+     * @return Lista de productos seleccionados con cantidades
+     * @throws SQLException si ocurre un error al obtener productos
+     */
 	public static List<Producto> seleccionaProductos(Scanner sc) throws SQLException {
 		Producto producto = new Producto();
 		List<Producto> prodseleccionados = new ArrayList<>();
@@ -346,6 +407,12 @@ public class Main1 {
 		return prodseleccionados;
 	}
 
+    /**
+     * Calcula el precio total de los productos seleccionados.
+     * 
+     * @param producto Lista de productos seleccionados
+     * @return Precio total
+     */
 	public static double calcularPrecioTotal(List<Producto> producto) {
 		double total = 0;
 		for (Producto p : producto) {
@@ -353,7 +420,13 @@ public class Main1 {
 		}
 		return total;
 	}
-
+	/**
+     * Obtiene la dirección de envío para el pedido, permite usar la dirección del cliente o ingresar una nueva.
+     * 
+     * @param sc Scanner para entrada del usuario
+     * @param cliente Cliente actual
+     * @return Dirección de envío seleccionada
+     */
 	public static String obtenerDireccionEnv(Scanner sc, Cliente cliente) {
 		System.out.println("Direccion actual " + cliente.getDireccion());
 		System.out.println("Usar esta direccion?(s/n)");
@@ -366,7 +439,13 @@ public class Main1 {
 			return sc.nextLine();
 		}
 	}
-
+	 /**
+     * Guarda un pedido en la base de datos y asocia los productos seleccionados.
+     * Reduce el stock de los productos según las cantidades seleccionadas.
+     * 
+     * @param pedido Objeto Pedido a guardar
+     * @param productos Lista de productos incluidos en el pedido
+     */
 	public static void guardarPedido(Pedido pedido, List<Producto>productos) {
 		PedidoDAO.inserta(pedido);
 		for(Producto p : productos) {
