@@ -27,10 +27,10 @@ public class Cliente {
 	/**
 	 * Crea un nuevo {@code Cliente} con los datos especificados.
 	 *
-	 * @param idCliente identificador único del cliente
-	 * @param nombre    nombre completo del cliente
-	 * @param direccion dirección física del cliente
-	 * @param codigo    código auxiliar (p. ej. código postal o interno)
+	 * @param idCliente identificador  del cliente
+	 * @param nombre    nombre  del cliente
+	 * @param direccion dirección  del cliente
+	 * @param codigo    código 
 	 */
 	public Cliente(int idCliente, String nombre, String direccion, int codigo) {
 		super();
